@@ -625,13 +625,17 @@ function calculateEstimation() {
 
     // La zone mesurée a une réflectance différente de 18% gris neutre
     // Il faut compenser pour trouver la lumière incidente réelle
-    const incidentFstop = calculateAperture(measuredFstop, -zoneIL);
+    // Si posemètre lit f/8 sur zone sombre (-2 IL) :
+    // Cette zone a "mangé" 2 IL (réfléchit 1/4)
+    // Lumière incidente = f/8 - 2 IL = f/4
+    const incidentFstop = calculateAperture(measuredFstop, zoneIL);  // SANS signe moins
     
     // Applique la compensation d'exposition souhaitée
-    // LOGIQUE CORRECTE: Pour SUREXPOSER (+IL), il faut OUVRIR le diaph (valeur plus petite)
-    const finalFstop = calculateAperture(incidentFstop, -comp); // Inversé !
-    const finalShutter = calculateShutterSpeed(shutter, -comp); // Inversé !
-    const finalISO = calculateISO(iso, comp); // ISO dans le même sens
+    // Pour +IL (surexposer), il faut OUVRIR (f-stop plus petit)
+    // Pour -IL (sous-exposer), il faut FERMER (f-stop plus grand)
+    const finalFstop = calculateAperture(incidentFstop, -comp);  // AVEC signe moins
+    const finalShutter = calculateShutterSpeed(shutter, -comp);   // AVEC signe moins
+    const finalISO = calculateISO(iso, comp);                     // Dans le même sens
 
     const zoneName = document.getElementById('estim-zone').selectedOptions[0].text;
 
