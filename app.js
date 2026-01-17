@@ -685,6 +685,7 @@ function calculateEstimation() {
  * Obtient le label d'une vitesse à partir de sa valeur
  */
 function getShutterLabel(value) {
-    const shutter = SHUTTERSPEEDS.find(s => Math.abs(s.value - value) < 0.001);
+    // Utiliser une tolérance relative de 1% au lieu d'une tolérance absolue
+    const shutter = SHUTTERSPEEDS.find(s => Math.abs(s.value - value) / s.value < 0.01);
     return shutter ? shutter.label : `1/${Math.round(1/value)}`;
 }
