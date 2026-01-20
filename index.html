@@ -2,15 +2,54 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    
+    <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#1a1a1a">
+    <meta name="background-color" content="#1a1a1a">
+    <meta name="msapplication-TileColor" content="#004e89">
+    <meta name="msapplication-TileImage" content="icons/icon-144x144.png">
+    <meta name="msapplication-config" content="browserconfig.xml">
+    
+    <!-- iOS PWA Support -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Posemetre Pro">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="icons/icon-192x192.png">
+    
+    <!-- SEO & Description -->
+    <meta name="description" content="Assistant professionnel de posemetre et flashmetre pour photographes. Calcul d'exposition, mode flash HSS, ratios d'eclairage.">
+    <meta name="keywords" content="posemetre, flashmetre, photographie, exposition, ISO, ouverture, vitesse, flash, HSS, light meter">
+    <meta name="author" content="Laurent Suchet">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Assistant Posemetre Pro">
+    <meta property="og:description" content="Assistant professionnel de posemetre et flashmetre pour photographes">
+    <meta property="og:image" content="icons/icon-512x512.png">
+    <meta property="og:locale" content="fr_FR">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Assistant Posemetre Pro">
+    <meta name="twitter:description" content="Assistant professionnel de posemetre et flashmetre pour photographes">
+    <meta name="twitter:image" content="icons/icon-512x512.png">
+    
     <title>Assistant Posemetre Pro</title>
+    
+    <!-- Manifest & Icons -->
     <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="shortcut icon" href="favicon-32x32.png">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="styles-light.css">
-    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAphJREFUWEftl09IFGEYxn/fzOyuZpZlZQdBOnQoCOqQdOgPdMk6FHToD3ToVASV0KFDB6FDUYcOQYcOCXXo0B8kqEMHoUOHgh0KdvBQKLir7s7OtzCLss7szKw7zl4G5uN95/19z/u+7/vOCEv8kyXGZzkA/3vCfycg4zgVoBm4AXQAO4Eq8An4AowCr4GXeRznXwCagWfA3gAjZoABYAx4D3z3+SuBWqADaAtwfwOcA6ayOfBEQEYGge4QTvPAfeA5MJklsS3AMHAT2OG7nwGO+t7SbvkAnJZJHGfGeW0HHgHVAQAzwEngEzANfPMTqAa2AnuA7QG+F4DTQM6TQF/A03wCOoF5v1N1gMMU0AvsT/B/ChwBFpIALgNXA3jngFZg1gVoz5iAXl9SPgJdCSIcqB6gJ0AVBtjtyyKdyDngDvA95XSbB1qABuCgH8sJ4G4YgHZgBNjpA+gHnqbwfBu4mOD/ADgMpEqgz89arwNqgXGA5vhcQEBGdE/0+cEtX/U30t+0HqD1EebfBlQl+OuZ0Z6IdcBNQA/dgq8DTUAS1c0m5L8o5gLoBAYTIrAsEhBnfzOw6h9N/4mACjwANJKWZQLiPAEcSInASgA0+o8lfbVLALgKXAuJQLEBtDcuBESgmABaE/1+AisB0N64HRKB+QAvAaCc0Oe1GLNfLYlcn+lSAnR87wF1IQks+F6LAaCJVvd+ewgCOtq/+m7FAlCFdwK7QhBQ99MhtxwAzYZ2o87aXAD6TWgR6vvPBaDJVv+8XeYC0LA+7R8cSwHQ5KG/ILXcxB2AYYAX/ndfKoDu/1l/JJcC8CcCIxnvgDjPeWD8lwJKDdAonMh4D6Qe/1wBGnfNB/8A84fZKpfH8AcAAAAASUVORK5CYII=">
 </head>
 <body>
     <div id="app">

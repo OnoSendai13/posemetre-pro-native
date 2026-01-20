@@ -1,10 +1,15 @@
 {
   "name": "assistant-posemetre-pro",
-  "version": "1.2.0",
-  "description": "Assistant Posemètre Pro - Application professionnelle de posemétrie et flashmétrie",
+  "version": "1.3.0",
+  "description": "Assistant Posemetre Pro - Application professionnelle de posemetrie et flashmetrie pour photographes",
   "main": "index.html",
   "scripts": {
-    "dev": "npx http-server -p 8000",
+    "dev": "npx http-server -p 8000 -c-1",
+    "start": "npx http-server -p 8000 -c-1",
+    "serve": "npx http-server -p 3000 -c-1",
+    "build": "echo 'No build step needed - vanilla JS PWA'",
+    "prebuild": "npm run validate",
+    "validate": "echo 'Validating PWA...' && node scripts/validate-pwa.js || true",
     "ionic:serve": "npx http-server -p 8100",
     "ionic:build": "echo 'No build needed for vanilla JS'",
     "cap:init": "npx cap init",
@@ -13,7 +18,9 @@
     "cap:sync": "npx cap sync",
     "cap:open:ios": "npx cap open ios",
     "cap:open:android": "npx cap open android",
-    "cap:update": "npx cap update"
+    "cap:update": "npx cap update",
+    "deploy:gh-pages": "gh-pages -d .",
+    "lighthouse": "npx lighthouse http://localhost:8000 --output html --output-path ./lighthouse-report.html"
   },
   "keywords": [
     "photography",
@@ -21,10 +28,20 @@
     "flash-meter",
     "exposure",
     "pwa",
-    "capacitor"
+    "capacitor",
+    "pwabuilder",
+    "progressive-web-app"
   ],
   "author": "Laurent Suchet IG:@ono_sendai",
   "license": "MIT",
+  "homepage": "https://github.com/laurentsuchet/assistant-posemetre-pro",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/laurentsuchet/assistant-posemetre-pro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/laurentsuchet/assistant-posemetre-pro/issues"
+  },
   "dependencies": {
     "@capacitor/core": "^5.5.1",
     "@capacitor/cli": "^5.5.1",
@@ -32,5 +49,12 @@
     "@capacitor/haptics": "^5.0.6",
     "@capacitor/status-bar": "^5.0.6",
     "@capacitor/splash-screen": "^5.0.6"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "gh-pages": "^6.1.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
