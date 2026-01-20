@@ -540,22 +540,23 @@ function calculatePosemetre() {
     const newShutter = calculateShutterSpeed(baseShutter, -comp); // Inversé !
     const newISO = calculateISO(baseISO, comp); // ISO reste dans le même sens
 
-    // Affiche les résultats
+    // Affiche les résultats avec traductions
+    const _t = window.i18n ? window.i18n.t : (k) => k;
     const resultsHTML = `
         <div class="result-item">
-            <span class="result-label">Option 1: Modifier l'ouverture</span>
+            <span class="result-label">${_t('resultOption1')}</span>
             <span class="result-value">f/${newFstop}</span>
-            <span class="result-detail">Vitesse: ${getShutterLabel(baseShutter)} | ISO: ${baseISO}</span>
+            <span class="result-detail">${_t('resultSpeed')}: ${getShutterLabel(baseShutter)} | ISO: ${baseISO}</span>
         </div>
         <div class="result-item">
-            <span class="result-label">Option 2: Modifier la vitesse</span>
+            <span class="result-label">${_t('resultOption2')}</span>
             <span class="result-value">${getShutterLabel(newShutter.value)}</span>
-            <span class="result-detail">Ouverture: f/${baseFstop} | ISO: ${baseISO}</span>
+            <span class="result-detail">${_t('resultAperture')}: f/${baseFstop} | ISO: ${baseISO}</span>
         </div>
         <div class="result-item">
-            <span class="result-label">Option 3: Modifier l'ISO</span>
+            <span class="result-label">${_t('resultOption3')}</span>
             <span class="result-value">ISO ${newISO}</span>
-            <span class="result-detail">Ouverture: f/${baseFstop} | Vitesse: ${getShutterLabel(baseShutter)}</span>
+            <span class="result-detail">${_t('resultAperture')}: f/${baseFstop} | ${_t('resultSpeed')}: ${getShutterLabel(baseShutter)}</span>
         </div>
     `;
 
@@ -606,9 +607,12 @@ function calculateFlashmetre() {
     let powerDisplay;
     let powerExplanation;
     
+    const _t = window.i18n ? window.i18n.t : (k) => k;
+    const evUnit = _t('evUnit');
+    
     if (powerMode === 'IL') {
-        powerDisplay = `${ilDiff >= 0 ? '+' : ''}${ilToPowerIL(ilDiff)} IL`;
-        powerExplanation = ilDiff >= 0 ? 'Augmenter la puissance du flash' : 'Diminuer la puissance du flash';
+        powerDisplay = `${ilDiff >= 0 ? '+' : ''}${ilToPowerIL(ilDiff)} ${evUnit}`;
+        powerExplanation = ilDiff >= 0 ? _t('resultIncrease') + ` ${Math.abs(ilDiff).toFixed(1)} ${evUnit}` : _t('resultDecrease') + ` ${Math.abs(ilDiff).toFixed(1)} ${evUnit}`;
     } else {
         // Mode FRACTIONS : calcul depuis la puissance actuelle
         const currentPowerElement = document.getElementById('flash-current-power');
@@ -630,21 +634,21 @@ function calculateFlashmetre() {
         const targetFraction = targetPowerObj.label;
         
         powerDisplay = targetFraction;
-        powerExplanation = `Regler de ${currentFractionLabel} a ${targetFraction}`;
+        powerExplanation = `${_t('resultFrom')} ${currentFractionLabel} ${_t('resultTo')} ${targetFraction}`;
     }
 
     // Affichage warning HSS
     const hssWarning = document.getElementById('hss-warning');
-    const hssWarningText = document.getElementById('hss-warning-text');
+    const hssWarningTextEl = document.getElementById('hss-warning-text');
     
-    if (hssEnabled && hssWarning && hssWarningText) {
+    if (hssEnabled && hssWarning && hssWarningTextEl) {
         if (hssActive) {
             hssWarning.style.display = 'flex';
-            hssWarningText.innerHTML = `<strong>Mode HSS actif</strong> (${getShutterLabel(shootingSpeed)})<br>
-                <small>Perte estimee par rapport a la sync normale: <strong>~${hssLoss.toFixed(1)} IL</strong></small>`;
+            hssWarningTextEl.innerHTML = `<strong>${_t('hssActive')}</strong> (${getShutterLabel(shootingSpeed)})<br>
+                <small>~${hssLoss.toFixed(1)} ${evUnit}</small>`;
         } else {
             hssWarning.style.display = 'flex';
-            hssWarningText.innerHTML = `<strong>Sync normale</strong> - Votre vitesse (${getShutterLabel(shootingSpeed)}) ne necessite pas le HSS.`;
+            hssWarningTextEl.innerHTML = `<strong>${_t('hssNotRequired')}</strong> (${getShutterLabel(shootingSpeed)})`;
         }
     } else if (hssWarning) {
         hssWarning.style.display = 'none';
@@ -653,19 +657,19 @@ function calculateFlashmetre() {
     // Construction du HTML des resultats
     let resultsHTML = `
         <div class="result-item">
-            <span class="result-label">Regler le flash pour obtenir</span>
+            <span class="result-label">${_t('resultFlashTarget')}</span>
             <span class="result-value">f/${finalFstop}</span>
-            <span class="result-detail">A ${iso} ISO, ${getShutterLabel(shootingSpeed)}</span>
+            <span class="result-detail">${_t('resultAtIsoSpeed', {iso: iso, speed: getShutterLabel(shootingSpeed)})}</span>
         </div>
         <div class="result-item">
-            <span class="result-label">Ajustement de puissance</span>
+            <span class="result-label">${_t('resultPowerAdjust')}</span>
             <span class="result-value">${powerDisplay}</span>
             <span class="result-detail">${powerExplanation}</span>
         </div>
         <div class="result-item">
-            <span class="result-label">Difference totale</span>
-            <span class="result-value">${ilDiff >= 0 ? '+' : ''}${ilDiff.toFixed(1)} IL</span>
-            <span class="result-detail">Compensation appliquee: ${extraComp >= 0 ? '+' : ''}${extraComp.toFixed(1)} IL</span>
+            <span class="result-label">${_t('resultBaseDiff')}</span>
+            <span class="result-value">${ilDiff >= 0 ? '+' : ''}${ilDiff.toFixed(1)} ${evUnit}</span>
+            <span class="result-detail">${_t('resultCompApplied')}: ${extraComp >= 0 ? '+' : ''}${extraComp.toFixed(1)} ${evUnit}</span>
         </div>
     `;
     
@@ -673,9 +677,9 @@ function calculateFlashmetre() {
     if (hssActive) {
         resultsHTML += `
         <div class="result-item" style="border-left-color: #64b5f6;">
-            <span class="result-label">Rappel HSS</span>
-            <span class="result-value" style="color: #64b5f6; font-size: 16px;">Perte estimee: ~${hssLoss.toFixed(1)} IL</span>
-            <span class="result-detail">Ces reglages tiennent compte de votre mesure en HSS. Si les reglages sont difficiles, essayez en sync normale (${getShutterLabel(maxSyncSpeed)}) et remesurez.</span>
+            <span class="result-label">${_t('hssWarningTitle')}</span>
+            <span class="result-value" style="color: #64b5f6; font-size: 16px;">~${hssLoss.toFixed(1)} ${evUnit}</span>
+            <span class="result-detail">${_t('hssWarningText', {loss: hssLoss.toFixed(1), speed: getShutterLabel(maxSyncSpeed)})}</span>
         </div>
         `;
     }
@@ -695,10 +699,13 @@ function calculateRatios() {
     // Calcule le fill light
     const fillFstop = calculateAperture(keyFstop, ratioIL);
     
+    const _t = window.i18n ? window.i18n.t : (k) => k;
+    const evUnit = _t('evUnit');
+    
     // Format puissance
     let powerDisplay;
     if (powerMode === 'IL') {
-        powerDisplay = `${ratioIL >= 0 ? '+' : ''}${ilToPowerIL(ratioIL)} IL`;
+        powerDisplay = `${ratioIL >= 0 ? '+' : ''}${ilToPowerIL(ratioIL)} ${evUnit}`;
     } else {
         powerDisplay = ilToPowerFraction(ratioIL);
     }
@@ -707,17 +714,17 @@ function calculateRatios() {
 
     const resultsHTML = `
         <div class="result-item">
-            <span class="result-label">Fill Light à régler</span>
+            <span class="result-label">${_t('resultFillLight')}</span>
             <span class="result-value">f/${fillFstop}</span>
-            <span class="result-detail">À ${iso} ISO, ${getShutterLabel(shutter)}</span>
+            <span class="result-detail">${_t('resultAtIsoSpeed', {iso: iso, speed: getShutterLabel(shutter)})}</span>
         </div>
         <div class="result-item">
-            <span class="result-label">Puissance Fill vs Key</span>
+            <span class="result-label">${_t('resultRatio')} Fill vs Key</span>
             <span class="result-value">${powerDisplay}</span>
-            <span class="result-detail">Différence: ${ratioIL.toFixed(1)} IL</span>
+            <span class="result-detail">${ratioIL.toFixed(1)} ${evUnit}</span>
         </div>
         <div class="result-item">
-            <span class="result-label">Ratio d'éclairage final</span>
+            <span class="result-label">${_t('resultLightingRatio')}</span>
             <span class="result-value">${lightingRatio}</span>
             <span class="result-detail">Key: f/${keyFstop} | Fill: f/${fillFstop}</span>
         </div>
@@ -738,52 +745,50 @@ function calculateEstimation() {
 
     // La zone mesurée a une réflectance différente de 18% gris neutre
     // Il faut compenser pour trouver la lumière incidente réelle
-    // Si posemètre lit f/8 sur zone sombre (-2 IL) :
-    // Cette zone a "mangé" 2 IL (réfléchit 1/4)
-    // Lumière incidente = f/8 - 2 IL = f/4
-    const incidentFstop = calculateAperture(measuredFstop, zoneIL);  // SANS signe moins
+    const incidentFstop = calculateAperture(measuredFstop, zoneIL);
     
     // Applique la compensation d'exposition souhaitée
-    // Pour +IL (surexposer), il faut OUVRIR (f-stop plus petit)
-    // Pour -IL (sous-exposer), il faut FERMER (f-stop plus grand)
-    const finalFstop = calculateAperture(incidentFstop, -comp);  // AVEC signe moins
-    const finalShutter = calculateShutterSpeed(shutter, -comp);   // AVEC signe moins
-    const finalISO = calculateISO(iso, comp);                     // Dans le même sens
+    const finalFstop = calculateAperture(incidentFstop, -comp);
+    const finalShutter = calculateShutterSpeed(shutter, -comp);
+    const finalISO = calculateISO(iso, comp);
 
     const zoneName = document.getElementById('estim-zone').selectedOptions[0].text;
+    
+    const _t = window.i18n ? window.i18n.t : (k) => k;
+    const evUnit = _t('evUnit');
 
     const resultsHTML = `
         <div class="result-item">
-            <span class="result-label">Lumière incidente estimée (base)</span>
+            <span class="result-label">${_t('resultIncidentLight')}</span>
             <span class="result-value">f/${incidentFstop}</span>
-            <span class="result-detail">Avant compensation d'exposition</span>
+            <span class="result-detail">${_t('resultBeforeComp')}</span>
         </div>
         <div class="result-item">
-            <span class="result-label">Zone mesurée</span>
+            <span class="result-label">${_t('resultMeasuredZone')}</span>
             <span class="result-value">${zoneName}</span>
-            <span class="result-detail">Lecture spot: f/${measuredFstop}</span>
+            <span class="result-detail">${_t('resultSpotReading')}: f/${measuredFstop}</span>
         </div>
         <div class="result-item">
-            <span class="result-label">Compensation de zone</span>
-            <span class="result-value">${-zoneIL >= 0 ? '+' : ''}${(-zoneIL).toFixed(1)} IL</span>
-            <span class="result-detail">Selon la réflectance de la zone</span>
+            <span class="result-label">${_t('resultZoneComp')}</span>
+            <span class="result-value">${-zoneIL >= 0 ? '+' : ''}${(-zoneIL).toFixed(1)} ${evUnit}</span>
+            <span class="result-detail">${_t('resultAccordingReflectance')}</span>
         </div>
         <hr style="border: 0; border-top: 2px solid rgba(255,255,255,0.1); margin: 20px 0;">
-        <h4 style="text-align: center; color: #4caf50; margin-bottom: 16px; font-size: 15px;">✨ RÉGLAGES FINAUX (avec compensation ${comp >= 0 ? '+' : ''}${comp.toFixed(1)} IL)</h4>
+        <h4 style="text-align: center; color: #4caf50; margin-bottom: 16px; font-size: 15px;">${_t('resultFinalSettings', {comp: (comp >= 0 ? '+' : '') + comp.toFixed(1)})}</h4>
         <div class="result-item">
-            <span class="result-label">Option 1: Modifier l'ouverture</span>
+            <span class="result-label">${_t('resultOption1')}</span>
             <span class="result-value">f/${finalFstop}</span>
-            <span class="result-detail">Vitesse: ${getShutterLabel(shutter)} | ISO: ${iso}</span>
+            <span class="result-detail">${_t('resultSpeed')}: ${getShutterLabel(shutter)} | ISO: ${iso}</span>
         </div>
         <div class="result-item">
-            <span class="result-label">Option 2: Modifier la vitesse</span>
+            <span class="result-label">${_t('resultOption2')}</span>
             <span class="result-value">${getShutterLabel(finalShutter.value)}</span>
-            <span class="result-detail">Ouverture: f/${incidentFstop} | ISO: ${iso}</span>
+            <span class="result-detail">${_t('resultAperture')}: f/${incidentFstop} | ISO: ${iso}</span>
         </div>
         <div class="result-item">
-            <span class="result-label">Option 3: Modifier l'ISO</span>
+            <span class="result-label">${_t('resultOption3')}</span>
             <span class="result-value">ISO ${finalISO}</span>
-            <span class="result-detail">Ouverture: f/${incidentFstop} | Vitesse: ${getShutterLabel(shutter)}</span>
+            <span class="result-detail">${_t('resultAperture')}: f/${incidentFstop} | ${_t('resultSpeed')}: ${getShutterLabel(shutter)}</span>
         </div>
     `;
 
