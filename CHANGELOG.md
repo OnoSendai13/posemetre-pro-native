@@ -1,422 +1,443 @@
 # 📋 Changelog
 
-Tous les changements notables de ce projet sont documentés dans ce fichier.
+All notable changes to this project are documented in this file.
 
-Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.0.0/),
-et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/).
+
+---
+
+## [1.2] - 2026-01-20
+
+### 🌍 Multilingual Support + HSS Mode + Help System
+
+**Status**: ✅ Production-ready  
+**Languages**: French (FR) + English (EN)  
+**New Features**: i18n, HSS, Help Modal  
+
+### ✨ New Features
+
+#### 🌍 Complete Internationalization (i18n)
+- **Automatic language detection** from browser settings
+- **FR ↔ EN toggle** button in header
+- **Full translation** of:
+  - Navigation and labels
+  - All form elements and dropdowns
+  - Dynamic calculation results
+  - Help modal content (5 sections)
+  - Zone system descriptions
+  - Error messages and tooltips
+- **Unit adaptation**: IL (French) / EV (English)
+- **localStorage persistence** of language preference
+
+#### ⚡ High-Speed Sync (HSS) Mode
+- **Dedicated HSS toggle** in Flash Meter mode
+- **Max sync speed selector** (1/200, 1/250, 1/320)
+- **Automatic power loss calculation**:
+  - ~2 EV loss per stop above sync speed
+  - Example: 1/1000 with 1/250 sync = ~4 EV loss
+- **Smart recommendations**:
+  - Shows adjusted settings accounting for HSS
+  - Suggests normal sync alternative when applicable
+- **Real-time HSS indicator** showing active status
+
+#### 📖 Integrated Help Modal
+- **5 comprehensive sections**:
+  1. **General**: Incident vs reflected light, exposure triangle, 18% gray rule
+  2. **Light Meter**: Workflow, compensation usage, practical examples
+  3. **Flash**: f/X concept, HSS explanation, power adjustment workflow
+  4. **Ratios**: Key/Fill concepts, common ratios (2:1, 4:1, 8:1)
+  5. **Estimation**: Zone system, spot metering technique
+- **Manual Mode warning**: 
+  - Explains why reasoning only fully applies in Manual (M) mode
+  - Note about LCD/histogram showing JPEG preview, not RAW data
+- **Sidebar navigation** for quick section access
+- **Keyboard support**: Escape key to close
+- **Click outside** to close
+
+### 📝 Files Added
+- `i18n.js` - Complete translation system (~25 KB)
+
+### 🛠️ Files Modified
+- `index.html` - Help modal HTML, i18n attributes, language button
+- `app.js` - HSS calculations, i18n integration, dynamic content translation
+- `styles.css` - Help modal styles (dark theme)
+- `styles-light.css` - Help modal styles (light theme)
+- `README.md` - Complete rewrite in English
+- `CHANGELOG.md` - Updated to English
+
+### ✅ Tests
+- ✅ Language detection works correctly
+- ✅ Language toggle switches all content instantly
+- ✅ HSS calculations are accurate
+- ✅ Help modal opens/closes properly
+- ✅ All 4 modes work in both languages
+- ✅ Both themes display correctly
 
 ---
 
 ## [1.1 Capacitor + Dual Theme] - 2026-01-17
 
-### 🎉 Migration native + Double thème
+### 🎉 Native Migration + Dual Theme System
 
-**Statut** : ✅ Production-ready  
-**Plateforme** : ✅ PWA + iOS + Android ready  
-**Thèmes** : 2 (Clair + Sombre)  
+**Status**: ✅ Production-ready  
+**Platform**: ✅ PWA + iOS + Android ready  
+**Themes**: 2 (Light + Dark)  
 
-### ✨ Nouvelles fonctionnalités
+### ✨ New Features
 
-#### 📦 Migration Capacitor
-- **Support iOS** : App native prête pour App Store
-- **Support Android** : App native prête pour Play Store
-- **Configuration** : package.json + capacitor.config.json
-- **Compatibilité** : Garde la PWA existante fonctionnelle
+#### 📦 Capacitor Migration
+- **iOS Support**: Native app ready for App Store
+- **Android Support**: Native app ready for Play Store
+- **Configuration**: package.json + capacitor.config.json
+- **Backwards Compatible**: Existing PWA still functional
 
-#### 🎨 Système de double thème
+#### 🎨 Dual Theme System
 
-**Mode Clair - Pastel Mint** 🌿
-- Fond : `#f0f4f8` Bleu-gris très clair (60%)
-- Primary : `#81c784` Vert menthe doux (30%)
-- Accent : `#64b5f6` Bleu vif (10%)
-- Style : Moderne, apaisant, tendance 2024-2026
-- Usage : Excellent en pleine lumière
+**Light Mode - Pastel Mint** 🌿
+- Background: `#f0f4f8` Blue-gray (60%)
+- Primary: `#81c784` Soft mint green (30%)
+- Accent: `#64b5f6` Bright blue (10%)
+- Style: Modern, soothing, 2024-2026 trend
+- Usage: Excellent in bright light
 
-**Mode Sombre - Dark Orange** 🌙 (Actuel)
-- Fond : `#1a1a1a` Noir profond (60%)
-- Primary : `#2d2d2d` Gris foncé (30%)
-- Accent : `#ff6b35` Orange vif (10%)
-- Style : Professionnel, technique
-- Usage : Excellent en faible lumière
+**Dark Mode - Dark Orange** 🌙 (Original)
+- Background: `#1a1a1a` Deep black (60%)
+- Primary: `#2d2d2d` Dark gray (30%)
+- Accent: `#ff6b35` Vibrant orange (10%)
+- Style: Professional, technical
+- Usage: Excellent in low light
 
-#### 🔄 Switch automatique et manuel
-- **Détection auto** : Suit la préférence système (prefers-color-scheme)
-- **Toggle manuel** : Bouton 🌙/☀️ dans le header
-- **Mémoire** : Sauvegarde du choix utilisateur (localStorage)
-- **Transition douce** : Animation fluide entre les thèmes (0.3s)
+#### 🔄 Automatic & Manual Switching
+- **Auto-detection**: Follows system preference (prefers-color-scheme)
+- **Manual toggle**: 🌙/☀️ button in header
+- **Memory**: Saves user choice (localStorage)
+- **Smooth transition**: 0.3s animation between themes
 
-### 📝 Fichiers ajoutés
-- `styles-light.css` : Thème Pastel Mint (9.7 Ko)
-- `theme-switcher.js` : Logique de switch thème (6.1 Ko)
-- `package.json` : Configuration npm + Capacitor
-- `capacitor.config.json` : Configuration app native
+### 📝 Files Added
+- `styles-light.css` - Pastel Mint theme (9.7 KB)
+- `theme-switcher.js` - Theme switching logic (6.1 KB)
+- `package.json` - npm + Capacitor configuration
+- `capacitor.config.json` - Native app configuration
 
-### 🛠️ Fichiers modifiés
-- `index.html` : Ajout bouton theme + liens CSS/JS
-- `styles.css` : Ajout style bouton theme
-- `README.md` : Documentation double thème + Capacitor
-- `CHANGELOG.md` : Ce fichier
+### 🛠️ Files Modified
+- `index.html` - Theme button + CSS/JS links
+- `styles.css` - Theme button styling
+- `README.md` - Dual theme + Capacitor documentation
+- `CHANGELOG.md` - This file
 
 ### ✅ Tests
-- ✅ Switch thème fonctionne
-- ✅ Détection préférence système OK
-- ✅ Sauvegarde choix utilisateur OK
-- ✅ Tous les 4 modes fonctionnent avec les 2 thèmes
-- ✅ PWA toujours fonctionnelle
-- ✅ Capacitor configé pour build iOS/Android
+- ✅ Theme switch works
+- ✅ System preference detection OK
+- ✅ User choice persistence OK
+- ✅ All 4 modes work with both themes
+- ✅ PWA still functional
+- ✅ Capacitor configured for iOS/Android build
 
-### 🚀 Prochaines étapes
-1. Installer les dépendances : `npm install`
-2. Initialiser Capacitor : `npx cap init`
-3. Ajouter plateformes : `npx cap add ios` + `npx cap add android`
-4. Build iOS : `npx cap open ios` (Xcode)
-5. Build Android : `npx cap open android` (Android Studio)
-6. Publication stores : App Store + Play Store
+### 🚀 Build Steps
+1. Install dependencies: `npm install`
+2. Initialize Capacitor: `npx cap init`
+3. Add platforms: `npx cap add ios` + `npx cap add android`
+4. Build iOS: `npx cap open ios` (Xcode)
+5. Build Android: `npx cap open android` (Android Studio)
+6. Publish to stores: App Store + Play Store
 
 ---
 
 ## [1.0 PROD V2] - 2026-01-17
 
-### 🎉 Version de production finale - Tous bugs corrigés
+### 🎉 Production Release - All Bugs Fixed
 
-**Statut** : ✅ Production-ready  
-**Tests** : 8/8 passés + tests vitesses  
-**Bugs connus** : Aucun  
+**Status**: ✅ Production-ready  
+**Tests**: 8/8 passed + speed tests  
+**Known Bugs**: None  
 
-### ✅ Corrigé
-- **Bug critique #7** : Tolérance vitesse trop large dans getShutterLabel()
-  - **Problème** : Vitesse 1/3200 affichée comme 1/800 (même avec compensation 0 IL)
-  - **Cause** : Tolérance absolue de 0.001 trop grande pour vitesses rapides
-  - **Solution** : Utilisation d'une tolérance relative de 1% (ligne 688)
-  - **Impact** : Affichage correct de TOUTES les vitesses dans TOUS les modes
-  - **Code** : `Math.abs(s.value - value) / s.value < 0.01`
+### ✅ Fixed
+- **Critical Bug #7**: Shutter speed tolerance too wide in getShutterLabel()
+  - **Problem**: 1/3200 displayed as 1/800 (even with 0 EV compensation)
+  - **Cause**: Absolute tolerance of 0.001 too large for fast speeds
+  - **Solution**: Using relative tolerance of 1% (line 688)
+  - **Impact**: Correct display of ALL speeds in ALL modes
+  - **Code**: `Math.abs(s.value - value) / s.value < 0.01`
 
-### 🧪 Tests de validation supplémentaires
-- ✅ Vitesse 1/3200 avec comp 0 IL → affichée 1/3200 (corrigé)
-- ✅ Vitesse 1/4000 avec comp 0 IL → affichée 1/4000
-- ✅ Vitesse 1/8000 avec comp 0 IL → affichée 1/8000
-- ✅ Toutes les vitesses de 30" à 1/8000 testées et correctes
+### 🧪 Additional Validation Tests
+- ✅ Speed 1/3200 with comp 0 EV → displays 1/3200 (fixed)
+- ✅ Speed 1/4000 with comp 0 EV → displays 1/4000
+- ✅ Speed 1/8000 with comp 0 EV → displays 1/8000
+- ✅ All speeds from 30s to 1/8000 tested and correct
 
-### 📊 Récapitulatif des 7 bugs corrigés
-1. ✅ Logique exposition Posemètre inversée (RC1)
-2. ✅ Arrondi vitesses incorrect (Beta 4)
-3. ✅ Mode Fractions bloqué à 1/1 (RC3)
-4. ✅ Fractions puissance incorrectes (FINAL V1)
-5. ✅ Compensation Estimation inversée (FINAL V2)
-6. ✅ Lumière incidente Estimation inversée (PROD)
-7. ✅ Tolérance vitesse trop large (PROD V2)
+### 📊 Summary of 7 Bugs Fixed
+1. ✅ Light Meter exposure logic inverted (RC1)
+2. ✅ Incorrect speed rounding (Beta 4)
+3. ✅ Fractions mode stuck at 1/1 (RC3)
+4. ✅ Incorrect flash power fractions (FINAL V1)
+5. ✅ Estimation compensation inverted (FINAL V2)
+6. ✅ Estimation incident light inverted (PROD)
+7. ✅ Shutter speed tolerance too wide (PROD V2)
 
 ---
 
 ## [1.0 PROD] - 2026-01-16
 
-### 🎉 Version de production - Application complètement fonctionnelle
+### 🎉 Production Version - Fully Functional
 
-**Statut** : ✅ Production-ready  
-**Tests** : 8/8 passés  
-**Bugs connus** : Aucun  
+**Status**: ✅ Production-ready  
+**Tests**: 8/8 passed  
+**Known Bugs**: None  
 
-### ✅ Corrigé
-- **Bug critique #6** : Calcul de la lumière incidente inversé dans le Mode Estimation
-  - **Problème** : Zone sombre (-2 IL) avec lecture f/8 donnait f/16 au lieu de f/4
-  - **Cause** : Confusion entre mesure réfléchie et lumière incidente
-  - **Solution** : Correction ligne 628 - `calculateAperture(measuredFstop, zoneIL)` sans signe moins
-  - **Impact** : Mode Estimation maintenant 100% fonctionnel
+### ✅ Fixed
+- **Critical Bug #6**: Incident light calculation inverted in Estimation Mode
+  - **Problem**: Dark zone (-2 EV) with f/8 reading gave f/16 instead of f/4
+  - **Cause**: Confusion between reflected reading and incident light
+  - **Solution**: Line 628 corrected - `calculateAperture(measuredFstop, zoneIL)` without minus sign
+  - **Impact**: Estimation Mode now 100% functional
 
-### 🧪 Tests de validation
-- ✅ Mode Posemètre : Compensation +1.33 IL → f/4 (ouvre correctement)
-- ✅ Mode Flashmètre IL : Ajustement +2.4 IL correct
-- ✅ Mode Flashmètre Fractions : 1/32 → 1/8 fonctionnel
-- ✅ Mode Ratios : Key f/8, -2 IL → Fill f/4, ratio 4:1
-- ✅ Mode Estimation Incidente : Asphalte f/8 → f/4 ✅
-- ✅ Mode Estimation Compensation : +1.33 IL → f/2.8 ✅
-- ✅ Arrondi vitesses : 1/500 affiché correctement
-- ✅ ISO standard : 100 + 1.33 IL → 250
-
----
-
-## [1.0 FINAL V4] - 2026-01-16 (Non publié)
-
-### ❌ Version incorrecte
-- Tentative de correction mais erreur de signe
-- Remplacée immédiatement par version PROD
-
----
-
-## [1.0 FINAL V3] - 2026-01-16 (Non publié)
-
-### ❌ Version incorrecte
-- Calcul de la lumière incidente encore inversé
-- Bug identifié par tests utilisateur
-
----
-
-## [1.0 FINAL V2] - 2026-01-16 (Non publié)
-
-### ✅ Corrigé
-- **Bug #5** : Compensation d'exposition inversée dans Mode Estimation
-  - Ligne 632-633 : Suppression du signe `-` devant `comp`
-  
-### ⚠️ Reste à corriger
-- Calcul de la lumière incidente encore incorrect
-
----
-
-## [1.0 FINAL V1] - 2026-01-16
-
-### ✅ Corrigé
-- **Bug critique #4** : Fractions de puissance flash incorrectes
-  - **Problème** : Menu contenait 1/1.4, 1/2.8, 1/5.6, 1/11, 1/22 (valeurs d'ouverture, pas de puissance)
-  - **Cause** : Confusion entre ouvertures photographiques et fractions de puissance flash
-  - **Solution** : Suppression des 6 valeurs incorrectes, conservation des 9 fractions binaires uniquement
-  - **Fichiers** : `app.js` (constante FLASH_POWERS_FRACTIONS), `index.html` (menu déroulant)
-  - **Impact** : Application conforme à tous les flashs du marché
-
-### 📝 Fractions de puissance correctes
-- 1/1, 1/2, 1/4, 1/8, 1/16, 1/32, 1/64, 1/128, 1/256 (divisions binaires)
+### 🧪 Validation Tests
+- ✅ Light Meter Mode: +1.33 EV compensation → f/4 (opens correctly)
+- ✅ Flash Meter IL: +2.4 EV adjustment correct
+- ✅ Flash Meter Fractions: 1/32 → 1/8 functional
+- ✅ Ratios Mode: Key f/8, -2 EV → Fill f/4, ratio 4:1
+- ✅ Estimation Incident: Asphalt f/8 → f/4 ✅
+- ✅ Estimation Compensation: +1.33 EV → f/2.8 ✅
+- ✅ Speed rounding: 1/500 displays correctly
+- ✅ Standard ISO: 100 + 1.33 EV → 250
 
 ---
 
 ## [1.0 RC3] - 2026-01-16
 
-### ✅ Corrigé
-- **Bug critique #3** : Mode Fractions bloqué à 1/1
-  - **Problème** : Calcul restait à 1/1 quelle que soit la compensation
-  - **Cause** : Logique de calcul incorrecte + valeurs IL manquantes
-  - **Solution** : Ajout de `ilValue` dans FLASH_POWERS_FRACTIONS + simplification calcul
-  - **Fichiers** : `app.js` lignes 534-550 (fonction calculateFlashmetre)
-
-### 🔧 Améliorations
-- Ajout de valeurs IL pour chaque fraction de puissance
-- Calcul direct depuis puissance actuelle sélectionnée
+### ✅ Fixed
+- **Critical Bug #3**: Fractions mode stuck at 1/1
+  - **Problem**: Calculation stayed at 1/1 regardless of compensation
+  - **Cause**: Incorrect calculation logic + missing IL values
+  - **Solution**: Added `ilValue` to FLASH_POWERS_FRACTIONS + simplified calculation
+  - **Files**: `app.js` lines 534-550 (calculateFlashmetre function)
 
 ---
 
 ## [1.0 RC2] - 2026-01-16
 
-### ✅ Corrigé
-- **Centièmes d'IL supprimés** : Affichage au dixième uniquement (+1.0 IL au lieu de +1.03 IL)
-  - 6 occurrences de `.toFixed(2)` → `.toFixed(1)`
+### ✅ Fixed
+- **Removed centesimals**: Display to tenth only (+1.0 EV instead of +1.03 EV)
+  - 6 occurrences of `.toFixed(2)` → `.toFixed(1)`
   
-- **ISO non standard corrigés** : ISO 251, 403, 1587... → ISO standard
-  - Ajout constante `ISO_STANDARD` (37 valeurs)
-  - Fonction `calculateISO()` arrondit aux valeurs standard
-  - Exemples : 251 → 250, 318 → 320, 566 → 640
+- **Non-standard ISO fixed**: ISO 251, 403, 1587... → Standard ISO
+  - Added `ISO_STANDARD` constant (37 values)
+  - `calculateISO()` function rounds to standard values
+  - Examples: 251 → 250, 318 → 320, 566 → 640
 
-### ✨ Ajouté
-- Champ "Puissance flash actuelle" en mode Fractions (14 valeurs sélectionnables)
+### ✨ Added
+- "Current flash power" field in Fractions mode (14 selectable values)
 
 ---
 
 ## [1.0 RC1] - 2026-01-16
 
-### ✅ Corrigé
-- **Bug critique #1** : Logique d'exposition inversée en Mode Posemètre
-  - **Problème** : Compensation +1.33 IL sous-exposait au lieu de surexposer
-  - **Exemple** : f/5.6 @ 1/500 + 1.33 IL suggérait f/9 @ 1/400 ❌, maintenant f/4 @ 1/500 ✅
-  - **Cause** : Fonction `calculateAperture()` appliquait la compensation dans le mauvais sens
-  - **Solution** : Inversion du signe ligne 440
-  - **Impact** : Les 3 suggestions (ouverture, vitesse, ISO) produisent le bon résultat
+### ✅ Fixed
+- **Critical Bug #1**: Exposure logic inverted in Light Meter Mode
+  - **Problem**: +1.33 EV compensation underexposed instead of overexposing
+  - **Example**: f/5.6 @ 1/500 + 1.33 EV suggested f/9 @ 1/400 ❌, now f/4 @ 1/500 ✅
+  - **Cause**: `calculateAperture()` applied compensation in wrong direction
+  - **Solution**: Sign inversion line 440
+  - **Impact**: All 3 suggestions (aperture, shutter, ISO) produce correct result
 
 ---
 
 ## [1.0 Beta 4] - 2026-01-16
 
-### ✅ Corrigé
-- **Bug critique #2** : Arrondi des vitesses incorrect
-  - **Problème** : Sélectionner 1/500 affichait 1/400
-  - **Cause** : `findClosestShutterSpeed()` utilisait différence absolue au lieu de logarithmique
-  - **Solution** : Calcul avec `Math.abs(Math.log2(speed / target))`
+### ✅ Fixed
+- **Critical Bug #2**: Incorrect speed rounding
+  - **Problem**: Selecting 1/500 displayed 1/400
+  - **Cause**: `findClosestShutterSpeed()` used absolute difference instead of logarithmic
+  - **Solution**: Calculation with `Math.abs(Math.log2(speed / target))`
 
 ---
 
 ## [1.0 Beta 3] - 2026-01-16
 
-### ✨ Ajouté
-- **Compensation d'exposition en Mode Estimation**
-  - Grille -2 IL à +3 IL par tiers
-  - 3 suggestions automatiques (ouverture, vitesse, ISO)
-  - Double compensation (zone + créative)
-  - Workflow cohérent avec Mode Posemètre
+### ✨ Added
+- **Exposure compensation in Estimation Mode**
+  - Grid -2 EV to +3 EV in thirds
+  - 3 automatic suggestions (aperture, shutter, ISO)
+  - Double compensation (zone + creative)
+  - Consistent workflow with Light Meter Mode
 
-### 📝 Cas d'usage
-- Portrait contre-jour : +2 IL
-- Paysage high-key : +1.33 IL
-- Portrait low-key : -1 à -2 IL
-- Neige éclatante : +2 IL
-- Silhouette sunset : -2 à -3 IL
+### 📝 Use Cases
+- Backlit portrait: +2 EV
+- High-key landscape: +1.33 EV
+- Low-key portrait: -1 to -2 EV
+- Bright snow: +2 EV
+- Sunset silhouette: -2 to -3 EV
 
 ---
 
 ## [1.0 Beta 2] - 2026-01-16
 
-### ✨ Ajouté
-- **Grille de réflectance enrichie**
-  - 12 zones (au lieu de 9)
-  - 5 alternatives naturelles au gris 18% : béton gris, herbe verte, feuillage moyen, bois patiné, écorce de hêtre
-  - Exemples concrets pour chaque zone
-  - Documentation complète dans GUIDE.html
+### ✨ Added
+- **Enriched reflectance grid**
+  - 12 zones (instead of 9)
+  - 5 natural 18% gray alternatives: gray concrete, green grass, medium foliage, weathered wood, beech bark
+  - Concrete examples for each zone
+  - Complete documentation in GUIDE.html
 
-### 📝 Grille complète
+### 📝 Complete Grid
 ```
-+5 IL : Blanc pur, Neige plein soleil
-+4 IL : Blanc neige à l'ombre
-+3 IL : Écorce de bouleau, Tronc d'arbre clair
-+2 IL : Peau très claire, Pierre claire
-+1 IL : Peau claire, Sable clair
- 0 IL : Gris 18%, Béton, Herbe, Feuillage, Bois, Écorce
--1 IL : Peau foncée, Feuillage ombre
--2 IL : Asphalte, Pierre sombre
--3 IL : Écorce sombre, Ombres profondes
--4 IL : Noir profond
++5 EV : Pure white, Snow in full sun
++4 EV : White snow in shade
++3 EV : Birch bark, Light tree trunk
++2 EV : Very fair skin, Light stone
++1 EV : Fair skin, Light sand
+ 0 EV : 18% Gray, Concrete, Grass, Foliage, Wood, Bark
+-1 EV : Dark skin, Foliage in shade
+-2 EV : Asphalt, Dark stone
+-3 EV : Dark bark, Deep shadows
+-4 EV : Near black
 ```
 
 ---
 
 ## [1.0 Beta 1] - 2026-01-16
 
-### ✨ Version initiale complète
+### ✨ Initial Complete Version
 
-#### 4 Modes professionnels
+#### 4 Professional Modes
 
-**1. Mode Posemètre** (Lumière continue)
-- Mesure d'ouverture de base
-- Configuration ISO et vitesse
-- Compensation -2 à +3 IL par tiers
-- 3 suggestions automatiques
+**1. Light Meter Mode** (Continuous Light)
+- Base aperture measurement
+- ISO and shutter configuration
+- Compensation -2 to +3 EV in thirds
+- 3 automatic suggestions
 
-**2. Mode Flashmètre**
-- Vitesse de synchronisation réglable
-- ISO de base configurable
-- Switch IL / Fractions
-- Compensation supplémentaire
+**2. Flash Meter Mode**
+- Adjustable sync speed
+- Configurable base ISO
+- IL / Fractions switch
+- Additional compensation
 
-**3. Mode Ratios Key/Fill**
-- Configuration Key Light
-- Ratio -3 à -0.5 IL
-- Calcul automatique Fill
-- Affichage ratio d'éclairage
+**3. Ratios Mode (Key/Fill)**
+- Key Light configuration
+- Ratio -3 to -0.5 EV
+- Automatic Fill calculation
+- Lighting ratio display
 
-**4. Mode Estimation**
-- Mesure spot sur zones de référence
-- Grille réflectance 9 zones
-- Calcul lumière incidente
+**4. Estimation Mode**
+- Spot metering on reference zones
+- 9-zone reflectance grid
+- Incident light calculation
 
-#### Caractéristiques techniques
-- PWA installable
-- Fonctionne hors ligne
-- Interface responsive
-- Hauteur fixe 720px
-- Boutons tactiles ≥44px
-- Thème sombre
-- 28 Ko total
-- 0 dépendances
+#### Technical Characteristics
+- Installable PWA
+- Works offline
+- Responsive interface
+- Fixed height 720px
+- Touch-friendly buttons ≥44px
+- Dark theme
+- 28 KB total
+- 0 dependencies
 
-#### Valeurs photographiques
-- 34 ouvertures (f/1.0 à f/45)
-- 58 vitesses (30" à 1/8000)
-- 37 ISO standard (50 à 102400)
-- 14 fractions (1/1 à 1/256) [corrigé à 9 en V1.0]
-- Compensation ⅓ IL
-- Précision 0.01 IL
-
-#### Documentation
-- README.md complet
-- GUIDE.html installation
-- CONTRIBUTING.md
-- LICENSE MIT
-- .gitignore
-- setup-git.sh
+#### Photographic Values
+- 34 apertures (f/1.0 to f/45)
+- 58 shutter speeds (30s to 1/8000)
+- 37 standard ISO (50 to 102400)
+- 14 fractions (1/1 to 1/256) [corrected to 9 in V1.0]
+- ⅓ EV compensation
+- 0.01 EV precision
 
 ---
 
-## 📊 Résumé des bugs corrigés
+## 📊 Bug Summary
 
-| # | Bug | Version | Lignes | Impact |
-|---|-----|---------|--------|--------|
-| 1 | Logique exposition Posemètre | RC1 | 440 | Critique |
-| 2 | Arrondi vitesses | Beta 4 | ~680 | Mineur |
-| 3 | Mode Fractions bloqué | RC3 | 534-550 | Critique |
-| 4 | Fractions puissance incorrectes | V1 | 79-93, 123-138 | Critique |
-| 5 | Compensation Estimation | V2 | 632-633 | Critique |
-| 6 | Lumière incidente Estimation | PROD | 628 | Critique |
+| # | Bug | Version | Lines | Impact |
+|---|-----|---------|-------|--------|
+| 1 | Light Meter exposure logic | RC1 | 440 | Critical |
+| 2 | Speed rounding | Beta 4 | ~680 | Minor |
+| 3 | Fractions mode stuck | RC3 | 534-550 | Critical |
+| 4 | Incorrect flash fractions | V1 | 79-93, 123-138 | Critical |
+| 5 | Estimation compensation | V2 | 632-633 | Critical |
+| 6 | Estimation incident light | PROD | 628 | Critical |
+| 7 | Shutter speed tolerance | PROD V2 | 688 | Critical |
 
-**Total** : 6 bugs critiques corrigés
+**Total**: 7 critical bugs fixed
 
 ---
 
-## 🎯 Conformité
+## 🎯 Standards Compliance
 
-### Standards photographiques
-- ✅ Ouvertures : Progression √2
-- ✅ Vitesses : Progression ×2
-- ✅ ISO : 37 valeurs standard
-- ✅ Fractions puissance : Divisions binaires uniquement
-- ✅ Compensation : Par tiers d'IL
+### Photographic Standards
+- ✅ Apertures: √2 progression
+- ✅ Shutter speeds: ×2 progression
+- ✅ ISO: 37 standard values
+- ✅ Flash power fractions: Binary divisions only
+- ✅ Compensation: By thirds of EV
 
-### Compatibilité matériel
-- ✅ Tous les boîtiers (Canon, Nikon, Sony, Fuji...)
-- ✅ Tous les flashs (Profoto, Godox, Canon, Nikon...)
-- ✅ Tous les posemètres (Sekonic, Gossen, Minolta)
+### Equipment Compatibility
+- ✅ All camera bodies (Canon, Nikon, Sony, Fuji...)
+- ✅ All flash units (Profoto, Godox, Canon, Nikon...)
+- ✅ All light meters (Sekonic, Gossen, Minolta)
 
-### Standards web
+### Web Standards
 - ✅ PWA (Manifest, Service Worker)
 - ✅ Responsive mobile-first
-- ✅ Accessibilité (contraste, labels)
-- ✅ Performance (<30 Ko, 0 dépendances)
+- ✅ Accessibility (contrast, labels)
+- ✅ Performance (<35 KB, 0 dependencies)
 - ✅ Offline-ready
 
 ---
 
-## 🙏 Contributeurs
+## 🙏 Contributors
 
-- **Laurent** — Développement et tests intensifs
-  - Identification de 6 bugs critiques
-  - Validation des standards photographiques
-  - Tests en conditions réelles
-
----
-
-## 📅 Historique de développement
-
-- **16 janvier 2026** : Développement intensif
-  - Beta 1 → PROD en une journée
-  - 7 itérations
-  - 6 bugs critiques identifiés et corrigés
-  - 100% des tests de validation passés
+- **Laurent Suchet IG:@ono_sendai** — Development and intensive testing
+  - Identification of 7 critical bugs
+  - Professional photographic standards validation
+  - Real-world field testing
 
 ---
 
-## 🚀 Prochaines versions
+## 📅 Development History
 
-### v1.1 (Planifié)
-- [ ] Historique des 10 dernières mesures
-- [ ] Favoris / Presets sauvegardés
-- [ ] Mode sombre/clair
+- **January 16, 2026**: Intensive development
+  - Beta 1 → PROD in one day
+  - 7 iterations
+  - 7 critical bugs identified and fixed
+  - 100% validation tests passed
 
-### v1.2 (Planifié)
-- [ ] Export CSV/PDF
-- [ ] Mode batch
-- [ ] Calculateur profondeur de champ
+- **January 17, 2026**: v1.1 Release
+  - Dual theme system
+  - Capacitor integration
 
-### v2.0 (Futur)
-- [ ] Support multi-langues (EN, ES, DE, IT)
-- [ ] Version iOS native
-- [ ] Version Android native
-- [ ] Intégration Bluetooth (Sekonic)
+- **January 20, 2026**: v1.2 Release
+  - Complete i18n (FR/EN)
+  - HSS mode
+  - Help modal
 
 ---
 
-## 📜 Licence
+## 🚀 Future Versions
 
-MIT License - Copyright (c) 2026 Laurent
+### v1.3 (Planned)
+- [ ] History of last 10 measurements
+- [ ] Saved favorites / Presets
+- [ ] Export to CSV/PDF
+
+### v2.0 (Future)
+- [ ] Additional languages (ES, DE, IT)
+- [ ] Native iOS app (App Store)
+- [ ] Native Android app (Play Store)
+- [ ] Bluetooth integration (Sekonic)
+- [ ] DOF/Hyperfocal calculator
+
+---
+
+## 📜 License
+
+MIT License - Copyright (c) 2026 Laurent Suchet IG:@ono_sendai
 
 ---
 
 <div align="center">
 
-**Bon shooting !** 📸✨
+**Happy shooting!** 📸✨
 
-Version actuelle : **1.0 PROD** (16 janvier 2026)
+Current version: **1.2** (January 20, 2026)
 
 </div>

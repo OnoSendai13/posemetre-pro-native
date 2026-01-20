@@ -1,471 +1,297 @@
-# 📸 Assistant Posemètre Pro
+# 📷 Light Meter Pro Assistant
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.1%20Capacitor-brightgreen)
-![License](https://img.shields.io/badge/license-MIT-blue)
-![Size](https://img.shields.io/badge/size-32KB-orange)
-![PWA](https://img.shields.io/badge/PWA-ready-purple)
-![iOS](https://img.shields.io/badge/iOS-ready-blue)
-![Android](https://img.shields.io/badge/Android-ready-green)
+![Version](https://img.shields.io/badge/version-1.2-blue.svg)
+![PWA](https://img.shields.io/badge/PWA-ready-green.svg)
+![Capacitor](https://img.shields.io/badge/Capacitor-iOS%20%7C%20Android-purple.svg)
+![Size](https://img.shields.io/badge/size-~35KB-brightgreen.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![i18n](https://img.shields.io/badge/languages-FR%20%7C%20EN-orange.svg)
 
-**Application professionnelle de posemétrie et flashmétrie pour photographes**
+**Professional incident light metering assistant for photographers**
 
-[🚀 Démo en ligne](#installation) • [📖 Documentation](#documentation) • [🐛 Signaler un bug](https://github.com/VOTRE-USERNAME/lightmeter-app-pwa/issues)
+[Features](#-features) • [Installation](#-installation) • [Modes](#-modes) • [Documentation](#-documentation)
 
 </div>
 
 ---
 
-## ✨ Nouveautés v1.1
+## 🌟 What's New in v1.2
 
-### 🎨 Double Thème Moderne
+### 🌍 Multilingual Support (FR/EN)
+- **Complete i18n system** with automatic browser language detection
+- **FR ↔ EN toggle** in header
+- **Full translation** of all content including dynamic results and help modal
+- **IL/EV units** adapted per language
 
-**Mode Clair - Pastel Mint** 🌿
-- Design moderne et apaisant
-- Couleurs : Bleu-gris clair + Vert menthe + Bleu vif
-- Parfait pour usage en pleine lumière
-- Tendance design 2024-2026
+### ⚡ High-Speed Sync (HSS) Mode
+- **Dedicated HSS toggle** in Flash Meter mode
+- **Configurable max sync speed** (1/200, 1/250, 1/320)
+- **Automatic power loss calculation** (approx. -2EV per stop above sync)
+- **Smart recommendations** with normal sync fallback suggestions
 
-**Mode Sombre - Dark Orange** 🌙
-- Look professionnel et technique (actuel)
-- Couleurs : Noir profond + Gris + Orange vif
-- Excellent en faible lumière
-- Idéal pour studio et shooting de nuit
+### 📖 Integrated Help Modal
+- **5 comprehensive sections**: General, Light Meter, Flash, Ratios, Estimation
+- **Manual Mode warning** with RAW/JPEG histogram explanation
+- **Quick navigation** sidebar
+- **Keyboard support** (Escape to close)
 
-**Switch Automatique**
-- ✅ Détection préférence système
-- ✅ Toggle manuel via bouton 🌙/☀️
-- ✅ Mémorisation du choix utilisateur
-- ✅ Transition douce et fluide
-
-### 📦 Support Capacitor (iOS + Android)
-
-**App Native Ready**
-- ✅ Configuration Capacitor complète
-- ✅ Build iOS avec Xcode
-- ✅ Build Android avec Android Studio
-- ✅ Publication App Store + Play Store
+### 🎨 Dual Theme System
+- **Light Mode** - Pastel Mint (excellent in bright conditions)
+- **Dark Mode** - Dark Orange (professional, low-light friendly)
+- **Auto-detection** via `prefers-color-scheme`
+- **Manual toggle** with localStorage persistence
 
 ---
 
-## 🎯 Fonctionnalités
+## ✨ Features
 
-### 4 Modes professionnels
+### 🎯 Core Philosophy
+This app works with **incident light measurement** (light falling ON the subject), which is more reliable than reflected light (what the camera meter sees) because it's independent of subject color/reflectance.
 
-#### 📸 **Mode Posemètre** (Lumière continue)
-- Mesure d'ouverture de base modifiable
-- Configuration ISO et vitesse d'obturation
-- Compensation d'exposition : **-2 à +3 IL par tiers**
-- **3 suggestions automatiques** :
-  - Option 1 : Modifier l'ouverture
-  - Option 2 : Modifier la vitesse
-  - Option 3 : Modifier l'ISO
+### 📱 Progressive Web App
+- **Installable** on any device (iOS, Android, Desktop)
+- **Offline-ready** with Service Worker caching
+- **Native-like** experience with Capacitor support
 
-#### ⚡ **Mode Flashmètre**
-- Vitesse de synchronisation réglable (ex : 1/160)
-- ISO de base configurable
-- Mesure du flash actuelle vs ouverture visée
-- **Switch IL / Fractions** :
-  - **Mode IL** : Pour Profoto et autres flashs de studio (réglage en dixièmes d'IL)
-  - **Mode Fractions** : Pour flashs cobra et portables (1/1, 1/2, 1/4, 1/8, 1/16, 1/32, 1/64, 1/128, 1/256)
-- Champ "Puissance flash actuelle" pour calcul depuis position réelle
-- Compensation supplémentaire : -2 à +3 IL
-
-#### 💡 **Mode Ratios Key/Fill Light**
-- Configuration de la Key Light
-- Ratio souhaité : -3 IL à -0.5 IL
-- Calcul automatique du Fill Light
-- Affichage du ratio d'éclairage (ex : 4:1, 2:1)
-- Affichage de la puissance en IL ou fractions
-
-#### 📊 **Mode Estimation** (Sans posemètre)
-- Mesure spot sur zones de référence
-- **Grille de réflectance enrichie : 12 zones**
-  - Zones sombres : Écorce sombre (-3 IL), Asphalte (-2 IL), Peau foncée (-1 IL)
-  - Zone neutre : **Gris 18%** (0 IL) + 5 alternatives naturelles (béton, herbe verte, feuillage, bois patiné, écorce de hêtre)
-  - Zones claires : Peau claire (+1 IL), Peau très claire (+2 IL), Blanc (+5 IL)
-- Calcul de la lumière incidente depuis mesure spot
-- Compensation d'exposition : -2 à +3 IL
-- **3 suggestions automatiques**
+### 🛠️ Professional Tools
+- **4 specialized modes** for different shooting scenarios
+- **Exposure compensation** in 1/3 EV increments
+- **Industry-standard values** (apertures, shutter speeds, ISO)
+- **Real-time calculations** with multiple suggestions
 
 ---
 
-## 🎨 Captures d'écran
+## 🎛️ Modes
 
-### Interface principale
-![Bannière](https://www.genspark.ai/api/files/s/OrCOWPQy)
+### 📷 Light Meter Mode (Continuous Light)
+Measure incident light and get exposure suggestions.
 
-*Application professionnelle de posemétrie et flashmétrie pour photographes*
+**Workflow:**
+1. Take incident light reading with your meter
+2. Enter the f-stop indicated
+3. Set your ISO and base shutter speed
+4. Apply creative exposure compensation if needed
+5. Get 3 equivalent exposure options (aperture, shutter, ISO variations)
 
-### Les 4 modes
-![4 Modes](https://www.genspark.ai/api/files/s/EauhhVQf)
-
-| 📸 Posemètre | ⚡ Flashmètre | 💡 Ratios | 📊 Estimation |
-|:---:|:---:|:---:|:---:|
-| Lumière continue | IL / Fractions | Key/Fill Light | Sans posemètre |
+**Compensation Range:** -2 EV to +3 EV (1/3 increments)
 
 ---
 
-## ⚡ Installation
+### ⚡ Flash Meter Mode
+Professional flash metering with IL and Fractions modes.
 
-### Option 1 : Sur smartphone (recommandé)
+**Features:**
+- **IL Mode**: Direct EV adjustments (+/-2.4 EV, etc.)
+- **Fractions Mode**: Real flash power values (1/1, 1/2, 1/4... 1/256)
+- **HSS Support**: Calculate power loss for high-speed sync
+- **Sync Speed**: Configurable from 1/60 to 1/320
 
-#### iOS (Safari)
-1. Télécharger l'archive `lightmeter-app-PROD.zip`
-2. Dézipper sur votre iPhone
-3. Ouvrir `index.html` dans Safari
-4. Appuyer sur **Partager** → **Sur l'écran d'accueil**
-5. L'application fonctionne maintenant hors ligne ! 📱
+**HSS Mode:**
+- Enable HSS toggle when shooting above sync speed
+- Select your camera's max sync speed
+- App automatically calculates power loss
+- Get recommendations for normal sync alternatives
 
-#### Android (Chrome)
-1. Télécharger l'archive `lightmeter-app-PROD.zip`
-2. Dézipper sur votre téléphone
-3. Ouvrir `index.html` dans Chrome
-4. Menu **⋮** → **Ajouter à l'écran d'accueil**
-5. L'application fonctionne maintenant hors ligne ! 📱
+---
 
-### Option 2 : GitHub Pages (hébergement gratuit)
+### 💡 Ratios Mode (Key/Fill)
+Calculate fill light based on key light measurement.
 
-1. **Fork ce repository**
-2. **Settings** → **Pages**
-3. **Source** : Deploy from branch `main` / Dossier `/`
-4. **Save**
-5. Votre app sera disponible sur : `https://votre-username.github.io/lightmeter-app-pwa/`
+**Common Ratios:**
+| Ratio | EV Difference | Look |
+|-------|---------------|------|
+| 1:1 | 0 EV | Flat, even lighting |
+| 2:1 | -1 EV | Subtle modeling |
+| 4:1 | -2 EV | Dramatic, portrait |
+| 8:1 | -3 EV | Very dramatic |
 
-### Option 3 : Serveur local
+**Workflow:**
+1. Measure key light f-stop
+2. Select desired ratio
+3. Get fill light f-stop automatically
 
+---
+
+### 📊 Estimation Mode (Without Light Meter)
+Calculate incident light from spot meter readings.
+
+**How it works:**
+Cameras assume everything is 18% gray. By measuring a known-reflectance zone and telling the app what you measured, it calculates the actual incident light.
+
+**Zone System (12 zones):**
+| Zone | EV | Examples |
+|------|-----|----------|
+| +5 | Pure white | Snow in full sun |
+| +4 | Bright white | Snow in shade |
+| +3 | Light gray | Birch bark |
+| +2 | Light skin | Very fair skin, white wall |
+| +1 | Caucasian skin | Fair skin, light sand |
+| 0 | 18% Gray | Concrete, green grass, medium foliage |
+| -1 | Dark skin | Dark skin, foliage in shade |
+| -2 | Dark tones | Asphalt, dark stone |
+| -3 | Very dark | Dark bark, deep shadows |
+| -4 | Near black | Very dense shadows |
+
+---
+
+## 📥 Installation
+
+### PWA (Recommended)
+**iOS Safari:**
+1. Open the app URL
+2. Tap Share button
+3. Select "Add to Home Screen"
+
+**Android Chrome:**
+1. Open the app URL
+2. Tap the install banner or menu
+3. Select "Install app"
+
+### Native App (Capacitor)
 ```bash
-# Cloner le repository
-git clone https://github.com/VOTRE-USERNAME/lightmeter-app-pwa.git
-cd lightmeter-app-pwa
+# Install dependencies
+npm install
 
-# Lancer un serveur local (Python)
-python3 -m http.server 8000
+# Add platforms
+npx cap add ios
+npx cap add android
 
-# Ou avec Node.js
-npx http-server -p 8000
+# Open in IDE
+npx cap open ios      # Xcode
+npx cap open android  # Android Studio
+```
 
-# Ouvrir http://localhost:8000 dans votre navigateur
+### Local Development
+```bash
+# Simple HTTP server
+npm run dev
+# Opens at http://localhost:8000
 ```
 
 ---
 
-## 📐 Valeurs photographiques
+## 📚 Documentation
 
-### Ouvertures standard (34 valeurs)
-f/1.0, f/1.1, f/1.2, f/1.4, f/1.6, f/1.8, f/2, f/2.2, f/2.5, f/2.8, f/3.2, f/3.5, f/4, f/4.5, f/5, f/5.6, f/6.3, f/7.1, f/8, f/9, f/10, f/11, f/13, f/14, f/16, f/18, f/20, f/22, f/25, f/29, f/32, f/36, f/40, f/45
+### 📖 Help Modal
+Click the **?** button in the header for integrated help with:
+- Incident vs reflected light explanation
+- Exposure triangle principles
+- Mode-specific workflows
+- HSS guidance
+- Zone system reference
 
-**Progression** : ×√2 (facteur 1.414)
+### 🔄 Language Toggle
+Click **FR/EN** in the header to switch languages instantly.
 
-### Vitesses d'obturation (58 valeurs)
-30", 25", 20", 15", 13", 10", 8", 6", 5", 4", 3", 2.5", 2", 1.6", 1.3", 1", puis fractions : 1/1.3, 1/1.6, 1/2, 1/2.5, 1/3, 1/4, 1/5, 1/6, 1/8, 1/10, 1/13, 1/15, 1/20, 1/25, 1/30, 1/40, 1/50, 1/60, 1/80, 1/100, 1/125, 1/160, 1/200, 1/250, 1/320, 1/400, 1/500, 1/640, 1/800, 1/1000, 1/1250, 1/1600, 1/2000, 1/2500, 1/3200, 1/4000, 1/5000, 1/6400, 1/8000
-
-**Progression** : ×2 (doublement)
-
-### ISO standard (37 valeurs)
-50, 64, 80, 100, 125, 160, 200, 250, 320, 400, 500, 640, 800, 1000, 1250, 1600, 2000, 2500, 3200, 4000, 5000, 6400, 8000, 10000, 12800, 16000, 20000, 25600, 32000, 40000, 51200, 64000, 80000, 102400
-
-**Progression** : ⅓ IL (facteur 1.26)
-
-### Fractions de puissance flash (9 valeurs)
-1/1 (pleine puissance), 1/2, 1/4, 1/8, 1/16, 1/32, 1/64, 1/128, 1/256
-
-**Progression** : ÷2 (divisions binaires)
-
-### Compensation d'exposition
-**-2 IL, -1 IL, -⅓ IL, 0, +⅓ IL, +1 IL, +1⅓ IL, +2 IL, +3 IL**
-
-**Précision** : Par tiers d'IL (0.33)  
-**Affichage** : Dixièmes d'IL (+1.3 IL)
+### 🌙 Theme Toggle
+Click the **☀️/🌙** icon to switch between light and dark themes.
 
 ---
 
-## 🔬 Formules photographiques
+## 🔧 Technical Specifications
 
-### Calcul d'ouverture
+### Photographic Values
+- **Apertures**: 34 values (f/1.0 to f/45)
+- **Shutter Speeds**: 58 values (30s to 1/8000)
+- **ISO**: 37 standard values (50 to 102400)
+- **Flash Powers**: 9 binary fractions (1/1 to 1/256)
+- **Compensation**: 1/3 EV increments
+
+### Technology Stack
+- **Frontend**: HTML5, CSS3, ES6+ JavaScript
+- **PWA**: Service Worker, Web App Manifest
+- **Mobile**: Capacitor 5.x for iOS/Android
+- **i18n**: Custom translation system
+- **Size**: ~35KB total (zero dependencies)
+
+### Browser Support
+| Browser | Support |
+|---------|---------|
+| Chrome | ✅ Full |
+| Safari | ✅ Full |
+| Firefox | ✅ Full |
+| Edge | ✅ Full |
+| Samsung Internet | ✅ Full |
+
+---
+
+## 📂 Project Structure
+
 ```
-Nouvelle ouverture = Ouverture de base × 2^(ΔIL/2)
-
-Exemple : f/5.6 + 1.33 IL
-= f/5.6 × 2^(1.33/2)
-= f/5.6 × 1.68
-≈ f/9.5 (arrondi à f/9 ou f/11)
-```
-
-### Différence en IL
-```
-ΔIL = 2 × log₂(Ouverture₂ / Ouverture₁)
-
-Exemple : f/5.6 → f/8
-= 2 × log₂(8 / 5.6)
-≈ 1 IL
-```
-
-### Puissance flash
-```
-Puissance = 2^(ΔIL)
-
-Exemple : +2 IL
-= 2^2 = 4× la puissance
-```
-
-### Ratio d'éclairage
-```
-Ratio = 2^|ΔIL| : 1
-
-Exemple : -2 IL entre Key et Fill
-= 2^2 : 1 = 4:1
+lightmeter-app-pwa/
+├── index.html          # Main application
+├── app.js              # Application logic
+├── i18n.js             # Translation system
+├── theme-switcher.js   # Theme management
+├── styles.css          # Dark theme styles
+├── styles-light.css    # Light theme styles
+├── manifest.json       # PWA manifest
+├── sw.js               # Service Worker
+├── GUIDE.html          # Installation guide
+├── CHANGELOG.md        # Version history
+├── README.md           # This file
+└── LICENSE             # MIT License
 ```
 
 ---
 
-## 🧪 Grille de réflectance (Zone System)
+## 📋 Changelog Highlights
 
-| Zone | IL | Exemples concrets |
-|------|-----|-------------------|
-| **Zone IX** | +5 IL | Blanc pur, Neige plein soleil |
-| **Zone VIII** | +4 IL | Blanc neige à l'ombre |
-| **Zone VII** | +3 IL | Écorce de bouleau, Tronc d'arbre clair |
-| **Zone VI** | +2 IL | Peau très claire, Pierre claire, Mur blanc |
-| **Zone V½** | +1 IL | Peau claire caucasienne, Sable clair |
-| **Zone V** | **0 IL** | **Gris neutre 18%** (carte grise Kodak) |
-| | | **Alternatives naturelles** : Béton gris, Herbe verte, Feuillage moyen, Bois patiné, Écorce de hêtre |
-| **Zone IV** | -1 IL | Peau foncée, Feuillage à l'ombre |
-| **Zone III** | -2 IL | Pierre sombre, Asphalte, Terre humide |
-| **Zone II** | -3 IL | Écorce sombre, Ombres profondes |
-| **Zone I** | -4 IL | Noir profond, Ombres très denses |
+### v1.2 (Current)
+- ✅ Multilingual support (FR/EN)
+- ✅ HSS mode with power loss calculation
+- ✅ Integrated help modal
+- ✅ Complete i18n of all dynamic content
 
-**Référence** : Système de zones d'Ansel Adams
+### v1.1 
+- ✅ Dual theme system (Light/Dark)
+- ✅ Capacitor integration for native apps
+- ✅ Auto theme detection
 
----
+### v1.0
+- ✅ 4 professional modes
+- ✅ PWA with offline support
+- ✅ 7 critical bugs fixed
 
-## 🎓 Mode d'emploi
-
-### Mode Posemètre (Lumière continue)
-
-1. Sélectionner l'ouverture mesurée (ex : f/5.6)
-2. Configurer ISO et vitesse
-3. Choisir la compensation d'exposition (ex : +1⅓ IL)
-4. **L'app propose 3 options** :
-   - Modifier l'ouverture → f/4
-   - Modifier la vitesse → 1/60
-   - Modifier l'ISO → ISO 250
-
-### Mode Flashmètre
-
-#### En mode IL (Profoto, Broncolor, etc.)
-1. Basculer le switch sur **IL**
-2. Entrer la mesure du flash actuelle (ex : f/5.6)
-3. Entrer l'ouverture souhaitée (ex : f/8)
-4. Ajouter une compensation (ex : +1⅓ IL)
-5. **L'app indique** : "Régler le flash pour obtenir f/13 (+2.4 IL)"
-
-#### En mode Fractions (Godox, Canon, Nikon, etc.)
-1. Basculer le switch sur **Fractions**
-2. Sélectionner la **puissance actuelle** du flash (ex : 1/32)
-3. Entrer la mesure (ex : f/5.6)
-4. Entrer l'ouverture visée (ex : f/8)
-5. Ajouter une compensation (ex : +1⅓ IL)
-6. **L'app indique** : "Régler de 1/32 à 1/8"
-
-### Mode Ratios Key/Fill
-
-1. Configurer la Key Light (ex : f/8)
-2. Choisir le ratio souhaité (ex : -2 IL)
-3. **L'app calcule** :
-   - Fill Light : f/4
-   - Ratio d'éclairage : 4:1
-   - Puissance Fill vs Key : 1/4 (en fractions) ou -2 IL
-
-### Mode Estimation (Sans posemètre)
-
-1. Faire une **mesure spot** sur une zone de référence (ex : asphalte, lecture f/8)
-2. Sélectionner la zone dans la liste (ex : "Pierre sombre / Asphalte (-2 IL)")
-3. **L'app calcule la lumière incidente** : f/4
-4. Ajouter une compensation d'exposition (ex : +1⅓ IL)
-5. **L'app propose 3 options finales** :
-   - Régler à f/2.8
-   - Ou ralentir la vitesse
-   - Ou augmenter l'ISO
-
-**Astuce** : Utilisez ce mode quand vous n'avez pas de posemètre incident, mais que vous pouvez mesurer une zone de réflectance connue (herbe, béton, peau, etc.)
+See [CHANGELOG.md](CHANGELOG.md) for complete history.
 
 ---
 
-## 🔧 Compatibilité
+## 🤝 Contributing
 
-### Matériel photographique
-
-#### Boîtiers compatibles
-✅ Canon (EOS R, 5D, 6D, 90D...)  
-✅ Nikon (Z, D850, D780...)  
-✅ Sony (A7, A9, A1...)  
-✅ Fujifilm (X-T, GFX...)  
-✅ Olympus / OM System  
-✅ Panasonic (S, GH...)  
-✅ Leica  
-
-#### Flashs compatibles
-
-**Mode IL** :
-- Profoto (A1, A2, B10, D2...)
-- Broncolor
-- Elinchrom
-- Hensel
-
-**Mode Fractions** :
-- Godox (V1, AD200, AD600...)
-- Canon Speedlite (600EX, 430EX...)
-- Nikon SB (SB-5000, SB-700...)
-- Sony HVL
-- Flashs de studio (Godox, Jinbei...)
-
-#### Posemètres de référence
-- Sekonic (L-308, L-478, L-858)
-- Gossen
-- Minolta
-
-### Navigateurs
-
-| Navigateur | Version minimale | Statut |
-|------------|------------------|--------|
-| **Chrome** (Desktop/Mobile) | 80+ | ✅ Testé |
-| **Safari** (iOS/macOS) | 13+ | ✅ Testé |
-| **Firefox** | 75+ | ✅ Compatible |
-| **Edge** | 80+ | ✅ Compatible |
-| **Samsung Internet** | 12+ | ✅ Compatible |
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ---
 
-## 🚀 Technologies
+## 📜 License
 
-- **Frontend** : HTML5, CSS3, JavaScript ES6+
-- **PWA** : Service Worker, Manifest.json
-- **Design** : Mobile-first, responsive
-- **Taille** : 28 Ko (ultra léger)
-- **Dépendances** : 0 (aucune librairie externe)
-- **Performance** : Calculs instantanés en JavaScript natif
+MIT License - Copyright (c) 2026 Laurent Suchet IG:@ono_sendai
+
+See [LICENSE](LICENSE) for details.
 
 ---
 
-## 📖 Documentation
+## 🙏 Acknowledgments
 
-### Fichiers inclus
-- `README.md` : Ce fichier
-- `GUIDE.html` : Guide d'installation et d'utilisation détaillé
-- `CONTRIBUTING.md` : Guide de contribution
-- `CHANGELOG.md` : Historique complet des versions
-
----
-
-## 🐛 Bugs connus / Limitations
-
-### Aucun bug connu ✅
-
-Tous les bugs critiques identifiés pendant le développement ont été corrigés :
-- ✅ Logique d'exposition correcte dans tous les modes
-- ✅ Arrondi des vitesses précis
-- ✅ Affichage correct de toutes les vitesses (tolérance relative)
-- ✅ Mode Fractions fonctionnel
-- ✅ Fractions de puissance conformes (divisions binaires uniquement)
-- ✅ Mode Estimation : calcul lumière incidente et compensation corrects
-- ✅ 7 bugs critiques corrigés au total (voir [CHANGELOG.md](CHANGELOG.md))
-
-### Limitations actuelles
-- Pas de sauvegarde d'historique (à venir)
-- Pas de presets personnalisés (à venir)
-- Mode High Speed Sync non supporté
-
----
-
-## 🤝 Contribution
-
-Les contributions sont les bienvenues ! Consultez [CONTRIBUTING.md](CONTRIBUTING.md) pour plus d'informations.
-
-### Comment contribuer
-1. Fork le projet
-2. Créer une branche (`git checkout -b feature/AmazingFeature`)
-3. Commit les changements (`git commit -m 'Add AmazingFeature'`)
-4. Push vers la branche (`git push origin feature/AmazingFeature`)
-5. Ouvrir une Pull Request
-
----
-
-## 📜 Licence
-
-Ce projet est sous licence **MIT** - voir le fichier [LICENSE](LICENSE) pour plus de détails.
-
-```
-Copyright (c) 2026 Laurent
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-```
-
----
-
-## 👨‍⚕️👨‍🎨 À propos
-
-**Développé par/pour** : Laurent — Neurologue et photographe professionnel
-
-**Motivation** : Créer un outil de posemétrie professionnel, gratuit et accessible à tous les photographes, avec une attention particulière à la précision et à la conformité aux standards de l'industrie.
-
----
-
-## 🙏 Remerciements
-
-- **Ansel Adams** - Pour le système de zones qui inspire le mode Estimation
-- **Sekonic, Gossen, Minolta** - Pour les références en posemétrie
-- **La communauté photographique** - Pour les retours et tests
-
----
-
-## 📞 Support
-
-### Besoin d'aide ?
-- 📖 Consultez [GUIDE.html](GUIDE.html)
-- 🐛 [Signaler un bug](https://github.com/VOTRE-USERNAME/lightmeter-app-pwa/issues)
-- 💬 [Poser une question](https://github.com/VOTRE-USERNAME/lightmeter-app-pwa/discussions)
-
----
-
-## 🗺️ Roadmap (Fonctionnalités futures)
-
-- [ ] Historique des mesures
-- [ ] Presets personnalisés
-- [ ] Export des données (CSV, PDF)
-- [ ] Mode High Speed Sync
-- [ ] Calculateur de profondeur de champ
-- [ ] Calculateur d'hyperfocale
-- [ ] Support multi-langues (EN, ES, DE, IT)
-- [ ] Version native iOS/Android
-
----
-
-## ⭐ Remerciements spéciaux
-
-Si cette application vous est utile, n'hésitez pas à :
-- ⭐ Mettre une étoile au projet
-- 🐛 Signaler les bugs
-- 💡 Proposer des améliorations
-- 📸 Partager vos photos !
+- **Laurent Suchet IG:@ono_sendai** — Neurologist and professional photographer
+- Designed for real-world field use
+- Based on professional photographic standards
+- Tested with Profoto and other major flash brands
 
 ---
 
 <div align="center">
 
-**Bon shooting !** 📸✨
+**Happy shooting!** 📸✨
 
-Made with ❤️ for photographers
+Made with ❤️ for photographers by Laurent Suchet IG:@ono_sendai
 
-[⬆ Retour en haut](#-assistant-posemètre-pro)
+[⬆ Back to top](#-light-meter-pro-assistant)
 
 </div>

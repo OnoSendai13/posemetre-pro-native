@@ -23,7 +23,7 @@
     "pwa",
     "capacitor"
   ],
-  "author": "Laurent",
+  "author": "Laurent Suchet IG:@ono_sendai",
   "license": "MIT",
   "dependencies": {
     "@capacitor/core": "^5.5.1",
