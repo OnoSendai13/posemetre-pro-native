@@ -2,9 +2,9 @@
   "name": "Assistant Posemètre Pro",
   "short_name": "Posemètre Pro",
   "description": "Assistant professionnel de posemètre et flashmètre pour photographes. Calcul d'exposition, mode flash HSS, ratios d'éclairage et estimation sans posemètre.",
-  "start_url": "/",
-  "scope": "/",
-  "id": "/",
+  "start_url": "/lightmeter-app-pwa/",
+  "scope": "/lightmeter-app-pwa/",
+  "id": "/lightmeter-app-pwa/",
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
   "background_color": "#1a1a1a",
@@ -97,14 +97,14 @@
       "name": "Mode Posemètre",
       "short_name": "Posemètre",
       "description": "Calculer l'exposition en lumière continue",
-      "url": "/?tab=posemetre",
+      "url": "/lightmeter-app-pwa/?tab=posemetre",
       "icons": [{ "src": "icons/icon-96x96.png", "sizes": "96x96" }]
     },
     {
       "name": "Mode Flash",
       "short_name": "Flash",
       "description": "Calculer la puissance du flash",
-      "url": "/?tab=flashmetre",
+      "url": "/lightmeter-app-pwa/?tab=flashmetre",
       "icons": [{ "src": "icons/icon-96x96.png", "sizes": "96x96" }]
     }
   ],
@@ -119,7 +119,7 @@
     "client_mode": ["navigate-existing", "auto"]
   },
   "share_target": {
-    "action": "/",
+    "action": "/lightmeter-app-pwa/",
     "method": "GET",
     "params": {
       "title": "title",
@@ -129,7 +129,7 @@
   },
   "file_handlers": [
     {
-      "action": "/",
+      "action": "/lightmeter-app-pwa/",
       "accept": {
         "image/*": [".jpg", ".jpeg", ".png", ".webp"]
       }
@@ -138,7 +138,7 @@
   "protocol_handlers": [
     {
       "protocol": "web+lightmeter",
-      "url": "/?data=%s"
+      "url": "/lightmeter-app-pwa/?data=%s"
     }
   ],
   "iarc_rating_id": "",
@@ -172,6 +172,6 @@
     }
   ],
   "note_taking": {
-    "new_note_url": "/?action=new-note"
+    "new_note_url": "/lightmeter-app-pwa/?action=new-note"
   }
 }
