@@ -1,27 +1,30 @@
-const CACHE_NAME = 'posemetre-pro-v2';
-const STATIC_CACHE = 'posemetre-static-v2';
-const DYNAMIC_CACHE = 'posemetre-dynamic-v2';
+const CACHE_NAME = 'posemetre-pro-v3';
+const STATIC_CACHE = 'posemetre-static-v3';
+const DYNAMIC_CACHE = 'posemetre-dynamic-v3';
+
+// Base path for GitHub Pages
+const BASE_PATH = '/lightmeter-app-pwa';
 
 // Fichiers essentiels à mettre en cache
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/styles.css',
-  '/styles-light.css',
-  '/app.js',
-  '/i18n.js',
-  '/theme-switcher.js',
-  '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png',
-  '/icons/icon-72x72.png',
-  '/icons/icon-96x96.png',
-  '/icons/icon-128x128.png',
-  '/icons/icon-144x144.png',
-  '/icons/icon-152x152.png',
-  '/icons/icon-192x192.png',
-  '/icons/icon-384x384.png',
-  '/icons/icon-512x512.png'
+  `${BASE_PATH}/`,
+  `${BASE_PATH}/index.html`,
+  `${BASE_PATH}/styles.css`,
+  `${BASE_PATH}/styles-light.css`,
+  `${BASE_PATH}/app.js`,
+  `${BASE_PATH}/i18n.js`,
+  `${BASE_PATH}/theme-switcher.js`,
+  `${BASE_PATH}/manifest.json`,
+  `${BASE_PATH}/icon-192.png`,
+  `${BASE_PATH}/icon-512.png`,
+  `${BASE_PATH}/icons/icon-72x72.png`,
+  `${BASE_PATH}/icons/icon-96x96.png`,
+  `${BASE_PATH}/icons/icon-128x128.png`,
+  `${BASE_PATH}/icons/icon-144x144.png`,
+  `${BASE_PATH}/icons/icon-152x152.png`,
+  `${BASE_PATH}/icons/icon-192x192.png`,
+  `${BASE_PATH}/icons/icon-384x384.png`,
+  `${BASE_PATH}/icons/icon-512x512.png`
 ];
 
 // Installation du service worker
