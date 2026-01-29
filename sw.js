@@ -1,6 +1,6 @@
-const CACHE_NAME = 'posemetre-pro-v4';
-const STATIC_CACHE = 'posemetre-static-v4';
-const DYNAMIC_CACHE = 'posemetre-dynamic-v4';
+const CACHE_NAME = 'posemetre-pro-v5';
+const STATIC_CACHE = 'posemetre-static-v5';
+const DYNAMIC_CACHE = 'posemetre-dynamic-v5';
 
 // Base path for GitHub Pages
 const BASE_PATH = '/posemetre-pro';

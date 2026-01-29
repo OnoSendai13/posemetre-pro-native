@@ -52,30 +52,32 @@ const translations = {
         gridTitle: '📋 Grille de réflectance (Exemples concrets)',
         
         // Zones dropdown
-        zoneWhitePure: 'Blanc pur / Neige plein soleil (+5 IL)',
-        zoneWhiteShade: 'Blanc neige à l\'ombre (+4 IL)',
-        zoneBirch: 'Écorce de bouleau / Tronc d\'arbre (+3 IL)',
-        zoneLightSkin: 'Peau très claire / Pierre claire (+2 IL)',
-        zoneCaucasian: 'Peau claire / Sable clair (+1 IL)',
-        zoneMediumLight: 'Peau moyenne claire (+0.5 IL)',
-        zoneGray18: 'Gris 18% / Béton / Herbe verte / Feuillage (0 IL)',
-        zoneMediumDark: 'Peau moyenne foncée (-0.5 IL)',
-        zoneDarkSkin: 'Peau foncée / Feuillage ombre (-1 IL)',
-        zoneDarkStone: 'Pierre sombre / Asphalte (-2 IL)',
-        zoneDarkBark: 'Écorce sombre / Ombre profonde (-3 IL)',
-        zoneDeepBlack: 'Noir profond (-4 IL)',
+        zoneWhiteBurnt: '⚠️ Blanc cramé (+4 IL) - sans détail',
+        zoneWhiteDetail: 'Blanc avec détails / Nuages blancs (+3 IL)',
+        zoneLightSkin: 'Peau très claire / Mur blanc / Sable blanc (+2 IL)',
+        zoneSkyOvercast: 'Ciel couvert lumineux / Neige ombre (+1.5 IL)',
+        zoneCaucasian: 'Peau claire / Sable clair / Ciel bleu clair (+1 IL)',
+        zoneMediumLight: 'Peau moyenne claire / Ciel bleu moyen (+0.5 IL)',
+        zoneGray18: 'Gris 18% / Herbe verte / Feuillage / Ciel bleu profond (0 IL)',
+        zoneMediumDark: 'Peau moyenne foncée / Ciel coucher soleil (-0.5 IL)',
+        zoneDarkSkin: 'Peau foncée / Feuillage ombre / Ciel orageux (-1 IL)',
+        zoneDarkStone: 'Pierre sombre / Asphalte sec / Terre sombre (-2 IL)',
+        zoneBlackDetail: 'Noir avec détails / Ombres profondes (-3 IL)',
+        zoneBlackBlocked: '⚠️ Noir bouché (-4 IL) - sans détail',
         
         // Grille de réflectance
-        grid5: '+5 IL: Blanc pur, Neige plein soleil',
-        grid4: '+4 IL: Blanc neige à l\'ombre',
-        grid3: '+3 IL: Écorce de bouleau, Tronc d\'arbre clair',
-        grid2: '+2 IL: Peau très claire, Pierre claire, Mur blanc',
-        grid1: '+1 IL: Peau claire caucasienne, Sable clair',
-        grid0: '0 IL (Zone V): Gris neutre 18% (carte grise Kodak), Béton gris, Herbe verte, Feuillage moyen, Bois patiné',
-        gridM1: '-1 IL: Peau foncée, Feuillage à l\'ombre',
-        gridM2: '-2 IL: Pierre sombre, Asphalte, Terre humide',
-        gridM3: '-3 IL: Écorce sombre, Ombres profondes',
-        gridM4: '-4 IL: Noir profond, Ombres très denses',
+        grid4: '⚠️ +4 IL: Blanc cramé, reflets spéculaires - sans détail exploitable',
+        grid3: '+3 IL: Blanc avec détails, nuages blancs lumineux, neige plein soleil, écorce de bouleau',
+        grid2: '+2 IL: Peau très claire, mur blanc à l\'ombre, sable blanc, pierre calcaire',
+        grid15: '+1.5 IL: Ciel couvert lumineux, neige à l\'ombre, brouillard',
+        grid1: '+1 IL: Peau claire caucasienne, sable clair, ciel bleu clair, palmier',
+        grid05: '+0.5 IL: Peau moyenne claire, ciel bleu moyen, béton clair',
+        grid0: '0 IL (Zone V): Gris 18% (carte grise), herbe verte, feuillage ensoleillé, ciel bleu profond, jean délavé',
+        gridM05: '-0.5 IL: Peau moyenne foncée, ciel au coucher du soleil (orange), tuiles',
+        gridM1: '-1 IL: Peau foncée, feuillage à l\'ombre, ciel orageux, bois foncé',
+        gridM2: '-2 IL: Pierre sombre, asphalte sec, terre sombre, écorce de chêne',
+        gridM3: '-3 IL: Noir avec détails, ombres profondes, vêtement noir texturé, cheveux noirs',
+        gridM4: '⚠️ -4 IL: Noir bouché, ombres très denses - sans détail exploitable',
         
         // Results - Posemètre
         resultOption1: 'Option 1: Modifier l\'ouverture',
@@ -179,30 +181,32 @@ const translations = {
         gridTitle: '📋 Reflectance Chart (Practical Examples)',
         
         // Zones dropdown
-        zoneWhitePure: 'Pure white / Snow in full sun (+5 EV)',
-        zoneWhiteShade: 'Snow in shade (+4 EV)',
-        zoneBirch: 'Birch bark / Light tree trunk (+3 EV)',
-        zoneLightSkin: 'Very light skin / Light stone (+2 EV)',
-        zoneCaucasian: 'Light skin / Light sand (+1 EV)',
-        zoneMediumLight: 'Medium light skin (+0.5 EV)',
-        zoneGray18: '18% Gray / Concrete / Green grass / Foliage (0 EV)',
-        zoneMediumDark: 'Medium dark skin (-0.5 EV)',
-        zoneDarkSkin: 'Dark skin / Foliage in shade (-1 EV)',
-        zoneDarkStone: 'Dark stone / Asphalt (-2 EV)',
-        zoneDarkBark: 'Dark bark / Deep shadow (-3 EV)',
-        zoneDeepBlack: 'Deep black (-4 EV)',
+        zoneWhiteBurnt: '⚠️ Blown white (+4 EV) - no detail',
+        zoneWhiteDetail: 'White with detail / Bright clouds (+3 EV)',
+        zoneLightSkin: 'Very light skin / White wall / White sand (+2 EV)',
+        zoneSkyOvercast: 'Bright overcast sky / Snow in shade (+1.5 EV)',
+        zoneCaucasian: 'Light skin / Light sand / Light blue sky (+1 EV)',
+        zoneMediumLight: 'Medium light skin / Medium blue sky (+0.5 EV)',
+        zoneGray18: '18% Gray / Green grass / Foliage / Deep blue sky (0 EV)',
+        zoneMediumDark: 'Medium dark skin / Sunset sky (-0.5 EV)',
+        zoneDarkSkin: 'Dark skin / Foliage in shade / Stormy sky (-1 EV)',
+        zoneDarkStone: 'Dark stone / Dry asphalt / Dark earth (-2 EV)',
+        zoneBlackDetail: 'Black with detail / Deep shadows (-3 EV)',
+        zoneBlackBlocked: '⚠️ Blocked black (-4 EV) - no detail',
         
         // Grille de réflectance
-        grid5: '+5 EV: Pure white, Snow in full sun',
-        grid4: '+4 EV: Snow in shade',
-        grid3: '+3 EV: Birch bark, Light tree trunk',
-        grid2: '+2 EV: Very light skin, Light stone, White wall',
-        grid1: '+1 EV: Light caucasian skin, Light sand',
-        grid0: '0 EV (Zone V): 18% neutral gray (Kodak gray card), Gray concrete, Green grass, Medium foliage, Weathered wood',
-        gridM1: '-1 EV: Dark skin, Foliage in shade',
-        gridM2: '-2 EV: Dark stone, Asphalt, Wet earth',
-        gridM3: '-3 EV: Dark bark, Deep shadows',
-        gridM4: '-4 EV: Deep black, Very dense shadows',
+        grid4: '⚠️ +4 EV: Blown white, specular highlights - no usable detail',
+        grid3: '+3 EV: White with detail, bright white clouds, snow in sun, birch bark',
+        grid2: '+2 EV: Very light skin, white wall in shade, white sand, limestone',
+        grid15: '+1.5 EV: Bright overcast sky, snow in shade, fog',
+        grid1: '+1 EV: Light caucasian skin, light sand, light blue sky, palm tree',
+        grid05: '+0.5 EV: Medium light skin, medium blue sky, light concrete',
+        grid0: '0 EV (Zone V): 18% gray (gray card), green grass, sunlit foliage, deep blue sky, faded jeans',
+        gridM05: '-0.5 EV: Medium dark skin, sunset sky (orange), roof tiles',
+        gridM1: '-1 EV: Dark skin, foliage in shade, stormy sky, dark wood',
+        gridM2: '-2 EV: Dark stone, dry asphalt, dark earth, oak bark',
+        gridM3: '-3 EV: Black with detail, deep shadows, textured black clothing, black hair',
+        gridM4: '⚠️ -4 EV: Blocked black, very dense shadows - no usable detail',
         
         // Results - Posemètre
         resultOption1: 'Option 1: Change aperture',
@@ -755,18 +759,18 @@ function updateEstimationZones() {
     if (!select) return;
     
     const zones = [
-        { value: '5', key: 'zoneWhitePure' },
-        { value: '4', key: 'zoneWhiteShade' },
-        { value: '3', key: 'zoneBirch' },
+        { value: '4', key: 'zoneWhiteBurnt' },
+        { value: '3', key: 'zoneWhiteDetail' },
         { value: '2', key: 'zoneLightSkin' },
+        { value: '1.5', key: 'zoneSkyOvercast' },
         { value: '1', key: 'zoneCaucasian' },
         { value: '0.5', key: 'zoneMediumLight' },
         { value: '0', key: 'zoneGray18' },
         { value: '-0.5', key: 'zoneMediumDark' },
         { value: '-1', key: 'zoneDarkSkin' },
         { value: '-2', key: 'zoneDarkStone' },
-        { value: '-3', key: 'zoneDarkBark' },
-        { value: '-4', key: 'zoneDeepBlack' }
+        { value: '-3', key: 'zoneBlackDetail' },
+        { value: '-4', key: 'zoneBlackBlocked' }
     ];
     
     const currentValue = select.value;
@@ -783,12 +787,14 @@ function updateReflectanceGrid() {
     if (!grid) return;
     
     grid.innerHTML = `
-        <div><strong>${t('grid5')}</strong></div>
         <div><strong>${t('grid4')}</strong></div>
         <div><strong>${t('grid3')}</strong></div>
         <div><strong>${t('grid2')}</strong></div>
+        <div><strong>${t('grid15')}</strong></div>
         <div><strong>${t('grid1')}</strong></div>
+        <div><strong>${t('grid05')}</strong></div>
         <div><strong>${t('grid0')}</strong></div>
+        <div><strong>${t('gridM05')}</strong></div>
         <div><strong>${t('gridM1')}</strong></div>
         <div><strong>${t('gridM2')}</strong></div>
         <div><strong>${t('gridM3')}</strong></div>
