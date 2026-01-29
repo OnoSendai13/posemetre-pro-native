@@ -735,6 +735,18 @@ function calculateRatios() {
 
 /**
  * Calcule l'estimation sans posemètre
+ * 
+ * LOGIQUE:
+ * - L'appareil expose toujours pour rendre le sujet mesuré en gris 18%
+ * - Si on mesure une peau claire (+1 IL de réflectance), l'appareil va sous-exposer de 1 IL
+ *   pour la ramener au gris 18%. La lecture f/11 signifie que l'appareil VEUT f/11.
+ * - Mais la lumière incidente réelle est 1 IL DE MOINS (car la peau réfléchit plus)
+ * - Donc lumière incidente = mesure - zoneIL (en termes de f/, ça veut dire OUVRIR)
+ * 
+ * Exemple: Mesure f/11 sur peau claire (+1 IL)
+ * - L'appareil dit f/11 pour exposer la peau claire en gris 18%
+ * - La lumière incidente réelle = f/11 - 1 IL = f/8
+ * - Car une surface qui réfléchit +1 IL de plus fait croire à l'appareil qu'il y a plus de lumière
  */
 function calculateEstimation() {
     const zoneIL = parseFloat(document.getElementById('estim-zone').value);
@@ -744,10 +756,16 @@ function calculateEstimation() {
     const comp = currentCompensation.estimation;
 
     // La zone mesurée a une réflectance différente de 18% gris neutre
-    // Il faut compenser pour trouver la lumière incidente réelle
-    const incidentFstop = calculateAperture(measuredFstop, zoneIL);
+    // Il faut SOUSTRAIRE la valeur de zone pour trouver la lumière incidente réelle
+    // zoneIL positif (peau claire) = surface qui réfléchit plus = lumière incidente plus faible
+    // Donc on utilise -zoneIL pour calculer l'ouverture incidente
+    const incidentFstop = calculateAperture(measuredFstop, -zoneIL);
     
     // Applique la compensation d'exposition souhaitée
+    // La logique est identique au mode Posemètre, mais on part de l'ouverture incidente
+    // Option 1: Modifier l'ouverture depuis incidentFstop (garder vitesse et ISO utilisateur)
+    // Option 2: Modifier la vitesse depuis shutter (garder ouverture incidente et ISO)
+    // Option 3: Modifier l'ISO depuis iso (garder ouverture incidente et vitesse)
     const finalFstop = calculateAperture(incidentFstop, -comp);
     const finalShutter = calculateShutterSpeed(shutter, -comp);
     const finalISO = calculateISO(iso, comp);
