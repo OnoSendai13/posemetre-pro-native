@@ -142,11 +142,13 @@ function apertureToIL(aperture1, aperture2) {
 
 /**
  * Calcule la nouvelle vitesse avec compensation IL
+ * @returns {number} La valeur numérique de la vitesse (pas l'objet complet)
  */
 function calculateShutterSpeed(baseSpeed, ilDelta) {
     // IL positif = vitesse plus rapide (diviseur plus grand)
     const newValue = baseSpeed / Math.pow(2, ilDelta);
-    return findClosestShutterSpeed(newValue);
+    const shutterObj = findClosestShutterSpeed(newValue);
+    return shutterObj.value; // Retourne seulement la valeur numérique pour cohérence
 }
 
 /**
@@ -525,11 +527,24 @@ function setCompensation(mode, value) {
 // ============================================
 
 /**
+ * Valide et corrige une valeur ISO
+ * @param {number} iso - La valeur ISO à valider
+ * @returns {number} Une valeur ISO valide
+ */
+function validateISO(iso) {
+    const minISO = Math.min(...ISO_STANDARD);
+    const maxISO = Math.max(...ISO_STANDARD);
+    if (isNaN(iso) || iso < minISO) return minISO;
+    if (iso > maxISO) return maxISO;
+    return iso;
+}
+
+/**
  * Calcule les réglages en mode POSEMÈTRE
  */
 function calculatePosemetre() {
     const baseFstop = parseFloat(document.getElementById('pose-mesure').value);
-    const baseISO = parseInt(document.getElementById('pose-iso').value);
+    const baseISO = validateISO(parseInt(document.getElementById('pose-iso').value));
     const baseShutter = parseFloat(document.getElementById('pose-vitesse').value);
     const comp = currentCompensation.posemetre;
 
@@ -550,7 +565,7 @@ function calculatePosemetre() {
         </div>
         <div class="result-item">
             <span class="result-label">${_t('resultOption2')}</span>
-            <span class="result-value">${getShutterLabel(newShutter.value)}</span>
+            <span class="result-value">${getShutterLabel(newShutter)}</span>
             <span class="result-detail">${_t('resultAperture')}: f/${baseFstop} | ISO: ${baseISO}</span>
         </div>
         <div class="result-item">
@@ -579,7 +594,7 @@ function calculateFlashmetre() {
     const currentFstop = parseFloat(document.getElementById('flash-mesure').value);
     const targetFstop = parseFloat(document.getElementById('flash-target').value);
     const shootingSpeed = parseFloat(document.getElementById('flash-vitesse').value);
-    const iso = parseInt(document.getElementById('flash-iso').value);
+    const iso = validateISO(parseInt(document.getElementById('flash-iso').value));
     const extraComp = currentCompensation.flashmetre;
 
     // HSS: Recupere la vitesse sync max si HSS est active
@@ -693,7 +708,7 @@ function calculateFlashmetre() {
 function calculateRatios() {
     const keyFstop = parseFloat(document.getElementById('ratio-key').value);
     const ratioIL = currentCompensation.ratios;
-    const iso = parseInt(document.getElementById('ratio-iso').value);
+    const iso = validateISO(parseInt(document.getElementById('ratio-iso').value));
     const shutter = parseFloat(document.getElementById('ratio-vitesse').value);
 
     // Calcule le fill light
@@ -751,7 +766,7 @@ function calculateRatios() {
 function calculateEstimation() {
     const zoneIL = parseFloat(document.getElementById('estim-zone').value);
     const measuredFstop = parseFloat(document.getElementById('estim-mesure').value);
-    const iso = parseInt(document.getElementById('estim-iso').value);
+    const iso = validateISO(parseInt(document.getElementById('estim-iso').value));
     const shutter = parseFloat(document.getElementById('estim-vitesse').value);
     const comp = currentCompensation.estimation;
 
@@ -770,7 +785,8 @@ function calculateEstimation() {
     const finalShutter = calculateShutterSpeed(shutter, -comp);
     const finalISO = calculateISO(iso, comp);
 
-    const zoneName = document.getElementById('estim-zone').selectedOptions[0].text;
+    const zoneSelect = document.getElementById('estim-zone');
+    const zoneName = zoneSelect && zoneSelect.selectedOptions[0] ? zoneSelect.selectedOptions[0].text : 'Zone';
     
     const _t = window.i18n ? window.i18n.t : (k) => k;
     const evUnit = _t('evUnit');
@@ -800,7 +816,7 @@ function calculateEstimation() {
         </div>
         <div class="result-item">
             <span class="result-label">${_t('resultOption2')}</span>
-            <span class="result-value">${getShutterLabel(finalShutter.value)}</span>
+            <span class="result-value">${getShutterLabel(finalShutter)}</span>
             <span class="result-detail">${_t('resultAperture')}: f/${incidentFstop} | ISO: ${iso}</span>
         </div>
         <div class="result-item">
