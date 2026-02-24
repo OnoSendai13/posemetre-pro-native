@@ -4,6 +4,8 @@
   "description": "Assistant Posemetre Pro - Application professionnelle de posemetrie et flashmetrie pour photographes",
   "main": "index.html",
   "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
     "dev": "npx http-server -p 8000 -c-1",
     "start": "npx http-server -p 8000 -c-1",
     "serve": "npx http-server -p 3000 -c-1",
@@ -43,16 +45,17 @@
     "url": "https://github.com/laurentsuchet/assistant-posemetre-pro/issues"
   },
   "dependencies": {
-    "@capacitor/core": "^5.5.1",
-    "@capacitor/cli": "^5.5.1",
     "@capacitor/app": "^5.0.6",
+    "@capacitor/cli": "^5.5.1",
+    "@capacitor/core": "^5.5.1",
     "@capacitor/haptics": "^5.0.6",
-    "@capacitor/status-bar": "^5.0.6",
-    "@capacitor/splash-screen": "^5.0.6"
+    "@capacitor/splash-screen": "^5.0.6",
+    "@capacitor/status-bar": "^5.0.6"
   },
   "devDependencies": {
+    "gh-pages": "^6.1.1",
     "http-server": "^14.1.1",
-    "gh-pages": "^6.1.1"
+    "vitest": "^4.0.18"
   },
   "engines": {
     "node": ">=16.0.0"

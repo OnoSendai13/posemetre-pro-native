@@ -1,19 +1,22 @@
-const CACHE_NAME = 'posemetre-pro-v6';
-const STATIC_CACHE = 'posemetre-static-v6';
-const DYNAMIC_CACHE = 'posemetre-dynamic-v6';
+const CACHE_NAME = 'posemetre-pro-v7';
+const STATIC_CACHE = 'posemetre-static-v7';
+const DYNAMIC_CACHE = 'posemetre-dynamic-v7';
 
-// Base path for GitHub Pages
-const BASE_PATH = '/posemetre-pro';
+// Base path — configurable via sw registration ou defaut GitHub Pages
+const BASE_PATH = self.__APP_BASE_PATH || '/posemetre-pro';
 
 // Fichiers essentiels à mettre en cache
 const STATIC_ASSETS = [
   `${BASE_PATH}/`,
   `${BASE_PATH}/index.html`,
   `${BASE_PATH}/styles.css`,
-  `${BASE_PATH}/styles-light.css`,
-  `${BASE_PATH}/app.js`,
   `${BASE_PATH}/i18n.js`,
   `${BASE_PATH}/theme-switcher.js`,
+  `${BASE_PATH}/src/main.js`,
+  `${BASE_PATH}/src/constants.js`,
+  `${BASE_PATH}/src/calculations.js`,
+  `${BASE_PATH}/src/state.js`,
+  `${BASE_PATH}/src/ui.js`,
   `${BASE_PATH}/manifest.json`,
   `${BASE_PATH}/icon-192.png`,
   `${BASE_PATH}/icon-512.png`,

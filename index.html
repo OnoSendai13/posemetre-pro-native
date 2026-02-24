@@ -47,9 +47,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="shortcut icon" href="favicon-32x32.png">
     
-    <!-- Stylesheets -->
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="styles-light.css">
 </head>
 <body>
     <div id="app">
@@ -74,17 +73,17 @@
         </header>
 
         <nav class="tab-nav">
-            <button class="tab-btn active" data-tab="posemetre" data-i18n="navPosemetre">&#128247; Posemètre</button>
+            <button class="tab-btn active" data-tab="posemetre" data-i18n="navPosemetre">&#9728;&#65039; Continu</button>
             <button class="tab-btn" data-tab="flashmetre" data-i18n="navFlash">&#9889; Flash</button>
             <button class="tab-btn" data-tab="ratios" data-i18n="navRatios">&#128161; Ratios</button>
-            <button class="tab-btn" data-tab="estimation" data-i18n="navEstimation">&#128202; Estimation</button>
+            <button class="tab-btn" data-tab="estimation" data-i18n="navEstimation">&#127919; Sans Cellule</button>
         </nav>
 
         <main class="content">
             <!-- MODE POSEMETRE -->
             <section id="tab-posemetre" class="tab-content active">
                 <div class="meter-display">
-                    <h2 data-i18n="posemetreTitle">Mode Posemètre (Lumière continue)</h2>
+                    <h2 data-i18n="posemetreTitle">Mode Continu (Lumière ambiante)</h2>
                     
                     <div class="input-group">
                         <label data-i18n="labelMesureInitiale">Mesure initiale (Ouverture):</label>
@@ -285,7 +284,7 @@
             <!-- MODE ESTIMATION -->
             <section id="tab-estimation" class="tab-content">
                 <div class="meter-display">
-                    <h2 data-i18n="estimationTitle">Estimation sans posemètre</h2>
+                    <h2 data-i18n="estimationTitle">Sans Cellule (Estimation incidente)</h2>
                     <p class="info-text">Mesure spot sur une zone de référence</p>
                     
                     <div class="input-group">
@@ -390,10 +389,10 @@
             
             <div class="modal-nav">
                 <button class="modal-nav-btn active" data-section="general" data-i18n="helpNavGeneral">Général</button>
-                <button class="modal-nav-btn" data-section="posemetre" data-i18n="helpNavPosemetre">Posemètre</button>
+                <button class="modal-nav-btn" data-section="posemetre" data-i18n="helpNavPosemetre">Continu</button>
                 <button class="modal-nav-btn" data-section="flash" data-i18n="helpNavFlash">Flash</button>
                 <button class="modal-nav-btn" data-section="ratios" data-i18n="helpNavRatios">Ratios</button>
-                <button class="modal-nav-btn" data-section="estimation" data-i18n="helpNavEstimation">Estimation</button>
+                <button class="modal-nav-btn" data-section="estimation" data-i18n="helpNavEstimation">Sans Cellule</button>
             </div>
             
             <div class="modal-content">
@@ -407,8 +406,16 @@
         </div>
     </div>
 
+    <!-- App Configuration -->
+    <script>
+        // Base path configurable — changer selon l'environnement de deploiement
+        // GitHub Pages: '/posemetre-pro'
+        // Local / Capacitor: ''
+        window.APP_CONFIG = { basePath: '' };
+    </script>
+
     <script src="i18n.js"></script>
     <script src="theme-switcher.js"></script>
-    <script src="app.js"></script>
+    <script type="module" src="src/main.js"></script>
 </body>
 </html>
