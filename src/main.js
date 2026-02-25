@@ -22,10 +22,37 @@ import {
 const BASE_PATH = window.APP_CONFIG?.basePath ?? '/posemetre-pro';
 
 // ============================================
+// CAPACITOR NATIVE SETUP
+// ============================================
+
+async function initCapacitor() {
+    // Check if running in Capacitor native environment
+    if (window.Capacitor && window.Capacitor.isNativePlatform()) {
+        try {
+            // Import Capacitor plugins dynamically
+            const { StatusBar, Style } = await import('@capacitor/status-bar');
+            const { Keyboard } = await import('@capacitor/keyboard');
+            
+            // Configure StatusBar to not overlay content
+            await StatusBar.setOverlaysWebView({ overlay: false });
+            await StatusBar.setBackgroundColor({ color: '#1a1a1a' });
+            await StatusBar.setStyle({ style: Style.Dark });
+            
+            console.log('Capacitor StatusBar configured');
+        } catch (e) {
+            console.log('Capacitor plugins not available:', e.message);
+        }
+    }
+}
+
+// ============================================
 // INITIALISATION
 // ============================================
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+    // 0. Capacitor native setup
+    await initCapacitor();
+    
     // 1. Cache DOM
     initDomCache();
 
