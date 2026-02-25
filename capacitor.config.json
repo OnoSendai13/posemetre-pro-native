@@ -1,31 +1,53 @@
 {
-  "appId": "com.laurent.posemetre",
+  "appId": "com.onosendai.posemetrepro",
   "appName": "Posemètre Pro",
-  "webDir": ".",
-  "bundledWebRuntime": false,
+  "webDir": "www",
   "backgroundColor": "#1a1a1a",
+  "server": {
+    "androidScheme": "https",
+    "iosScheme": "capacitor"
+  },
   "ios": {
     "contentInset": "always",
-    "scheme": "App"
+    "scheme": "PosemetrePro",
+    "preferredContentMode": "mobile",
+    "backgroundColor": "#1a1a1a",
+    "allowsLinkPreview": true,
+    "scrollEnabled": true
   },
   "android": {
     "backgroundColor": "#1a1a1a",
-    "allowMixedContent": true
+    "allowMixedContent": false,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": false,
+    "buildOptions": {
+      "releaseType": "APK"
+    }
   },
   "plugins": {
     "SplashScreen": {
-      "launchShowDuration": 1000,
+      "launchShowDuration": 2000,
       "launchAutoHide": true,
+      "launchFadeOutDuration": 500,
       "backgroundColor": "#1a1a1a",
       "androidSplashResourceName": "splash",
       "androidScaleType": "CENTER_CROP",
-      "showSpinner": false,
-      "iosSpinnerStyle": "small",
-      "spinnerColor": "#ff6b35"
+      "showSpinner": true,
+      "iosSpinnerStyle": "large",
+      "spinnerColor": "#ff6b35",
+      "splashFullScreen": true,
+      "splashImmersive": true
     },
     "StatusBar": {
-      "style": "dark",
-      "backgroundColor": "#1a1a1a"
+      "style": "Dark",
+      "backgroundColor": "#1a1a1a",
+      "overlaysWebView": false
+    },
+    "Haptics": {
+      "enabled": true
+    },
+    "App": {
+      "allowNavigation": []
     }
   }
 }

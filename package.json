@@ -14,6 +14,9 @@
     "validate": "echo 'Validating PWA...' && node scripts/validate-pwa.js || true",
     "ionic:serve": "npx http-server -p 8100",
     "ionic:build": "echo 'No build needed for vanilla JS'",
+    "build:native": "bash scripts/build-native.sh all",
+    "build:ios": "bash scripts/build-native.sh ios",
+    "build:android": "bash scripts/build-native.sh android",
     "cap:init": "npx cap init",
     "cap:add:ios": "npx cap add ios",
     "cap:add:android": "npx cap add android",
@@ -21,6 +24,8 @@
     "cap:open:ios": "npx cap open ios",
     "cap:open:android": "npx cap open android",
     "cap:update": "npx cap update",
+    "cap:run:ios": "npx cap run ios",
+    "cap:run:android": "npx cap run android",
     "deploy:gh-pages": "gh-pages -d .",
     "lighthouse": "npx lighthouse http://localhost:8000 --output html --output-path ./lighthouse-report.html"
   },
@@ -45,10 +50,14 @@
     "url": "https://github.com/laurentsuchet/assistant-posemetre-pro/issues"
   },
   "dependencies": {
+    "@capacitor/android": "^5.7.8",
     "@capacitor/app": "^5.0.6",
     "@capacitor/cli": "^5.5.1",
     "@capacitor/core": "^5.5.1",
     "@capacitor/haptics": "^5.0.6",
+    "@capacitor/ios": "^5.7.8",
+    "@capacitor/keyboard": "^5.0.9",
+    "@capacitor/preferences": "^5.0.8",
     "@capacitor/splash-screen": "^5.0.6",
     "@capacitor/status-bar": "^5.0.6"
   },
