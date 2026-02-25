@@ -1,17 +1,68 @@
-# 📷 Light Meter Pro Assistant
+# 📱 Posemètre Pro Native (iOS & Android)
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.2-blue.svg)
-![PWA](https://img.shields.io/badge/PWA-ready-green.svg)
-![Capacitor](https://img.shields.io/badge/Capacitor-iOS%20%7C%20Android-purple.svg)
-![Size](https://img.shields.io/badge/size-~35KB-brightgreen.svg)
+![Version](https://img.shields.io/badge/version-1.3-blue.svg)
+![iOS](https://img.shields.io/badge/iOS-13%2B-black.svg)
+![Android](https://img.shields.io/badge/Android-API%2022%2B-green.svg)
+![Capacitor](https://img.shields.io/badge/Capacitor-5.x-purple.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![i18n](https://img.shields.io/badge/languages-FR%20%7C%20EN-orange.svg)
 
-**Professional incident light metering assistant for photographers**
+**Application native iOS & Android pour photographes professionnels**
 
-[Features](#-features) • [Installation](#-installation) • [Modes](#-modes) • [Documentation](#-documentation)
+🔗 **Version PWA** : [posemetre-pro](https://github.com/OnoSendai13/posemetre-pro)
+
+[Installation](#-installation-native) • [Build](#-build) • [Features](#-features) • [Documentation](#-documentation)
+
+</div>
+
+---
+
+## 🚀 Ce dépôt
+
+Ce dépôt contient la **version native** de Posemètre Pro, compilée avec **Capacitor** pour iOS et Android.
+
+| Dépôt | Description |
+|-------|-------------|
+| [posemetre-pro](https://github.com/OnoSendai13/posemetre-pro) | Version PWA (Progressive Web App) |
+| **posemetre-pro-native** (ce dépôt) | Version native iOS & Android |
+
+---
+
+## 📥 Installation Native
+
+### Prérequis
+
+**iOS :**
+- macOS avec Xcode 14+
+- CocoaPods : `sudo gem install cocoapods`
+- Compte Apple Developer (pour distribution)
+
+**Android :**
+- Android Studio (Arctic Fox+)
+- Java JDK 17+
+- Android SDK (API 22+)
+
+### Build rapide
+
+```bash
+# Cloner le dépôt
+git clone https://github.com/OnoSendai13/posemetre-pro-native.git
+cd posemetre-pro-native
+
+# Installer les dépendances
+npm install
+
+# Build pour les deux plateformes
+npm run build:native
+
+# Ouvrir dans l'IDE
+npx cap open ios      # Xcode
+npx cap open android  # Android Studio
+```
+
+📖 **Guide complet** : voir [NATIVE_BUILD.md](NATIVE_BUILD.md)
 
 </div>
 
