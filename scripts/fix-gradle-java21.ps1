@@ -32,10 +32,10 @@ Write-Host "[1/4] Updating Gradle version..." -ForegroundColor Yellow
 $wrapperFile = "$androidDir/gradle/wrapper/gradle-wrapper.properties"
 if (Test-Path $wrapperFile) {
     $content = Get-Content $wrapperFile -Raw
-    # AGP 9.x requires Gradle 8.11.1+
-    $content = $content -replace "gradle-\d+\.\d+(\.\d+)?-all\.zip", "gradle-8.11.1-all.zip"
+    # AGP 9.0.1 requires Gradle 9.1.0+
+    $content = $content -replace "gradle-\d+\.\d+(\.\d+)?-(all|bin)\.zip", "gradle-9.1.0-bin.zip"
     Set-Content $wrapperFile $content -NoNewline
-    Write-Host "  [OK] Gradle 8.11.1" -ForegroundColor Green
+    Write-Host "  [OK] Gradle 9.1.0" -ForegroundColor Green
 }
 
 # ==============================================================================
@@ -104,7 +104,7 @@ Write-Host "                    Configuration Complete!                     " -F
 Write-Host "================================================================" -ForegroundColor Blue
 Write-Host ""
 Write-Host "Changes applied:" -ForegroundColor Green
-Write-Host "  - Gradle 8.11.1 (AGP 9.x compatible)" -ForegroundColor White
+Write-Host "  - Gradle 9.1.0 (AGP 9.x compatible)" -ForegroundColor White
 Write-Host "  - Android Gradle Plugin 9.0.1" -ForegroundColor White
 Write-Host "  - ProGuard -> proguard-android-optimize.txt" -ForegroundColor White
 Write-Host "  - targetSdkVersion 35 (Google Play requirement)" -ForegroundColor White
