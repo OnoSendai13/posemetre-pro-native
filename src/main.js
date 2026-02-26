@@ -9,6 +9,10 @@ import {
     calculatePosemetre, calculateFlashmetre, calculateRatios, calculateEstimation,
     openHelpModal, closeHelpModal, showHelpSection
 } from './ui.js';
+import {
+    initAllEffects, enhancedSwitchTab,
+    animatedOpenModal, animatedCloseModal
+} from './effects.js';
 
 // ============================================
 // CONFIGURATION
@@ -74,6 +78,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 5. PWA
     initPWA();
 
+    // 6. Modern UI effects
+    initAllEffects();
+
     console.log('App initialized (modular)');
 });
 
@@ -115,9 +122,9 @@ function setupEventListeners() {
     // Power mode toggle (IL / Fractions)
     dom('powerModeToggle')?.addEventListener('click', togglePowerMode);
 
-    // Tabs
+    // Tabs (with enhanced directional slide transition)
     document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => switchTab(e.target.dataset.tab));
+        btn.addEventListener('click', (e) => enhancedSwitchTab(e.target.dataset.tab, switchTab));
     });
 
     // Compensation buttons — POSEMETRE
@@ -182,18 +189,21 @@ function setupEventListeners() {
 // ============================================
 
 function initHelpModal() {
-    dom('help-btn')?.addEventListener('click', openHelpModal);
-    dom('help-close')?.addEventListener('click', closeHelpModal);
+    dom('help-btn')?.addEventListener('click', () => {
+        animatedOpenModal();
+        showHelpSection('help-general');
+    });
+    dom('help-close')?.addEventListener('click', animatedCloseModal);
 
     const modal = dom('help-modal');
     if (modal) {
         modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeHelpModal();
+            if (e.target === modal) animatedCloseModal();
         });
     }
 
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeHelpModal();
+        if (e.key === 'Escape') animatedCloseModal();
     });
 
     document.querySelectorAll('.modal-nav-btn').forEach(btn => {
