@@ -2,7 +2,7 @@
   "appId": "com.onosendai.posemetrepro",
   "appName": "Posemètre Pro",
   "webDir": "www",
-  "backgroundColor": "#1a1a1a",
+  "backgroundColor": "#141618",
   "server": {
     "androidScheme": "https",
     "iosScheme": "capacitor"
@@ -11,12 +11,12 @@
     "contentInset": "always",
     "scheme": "PosemetrePro",
     "preferredContentMode": "mobile",
-    "backgroundColor": "#1a1a1a",
+    "backgroundColor": "#141618",
     "allowsLinkPreview": true,
     "scrollEnabled": true
   },
   "android": {
-    "backgroundColor": "#1a1a1a",
+    "backgroundColor": "#141618",
     "allowMixedContent": false,
     "captureInput": true,
     "webContentsDebuggingEnabled": false,
@@ -29,18 +29,18 @@
       "launchShowDuration": 2000,
       "launchAutoHide": true,
       "launchFadeOutDuration": 500,
-      "backgroundColor": "#1a1a1a",
+      "backgroundColor": "#141618",
       "androidSplashResourceName": "splash",
       "androidScaleType": "CENTER_CROP",
       "showSpinner": true,
       "iosSpinnerStyle": "large",
-      "spinnerColor": "#ff6b35",
+      "spinnerColor": "#E8A849",
       "splashFullScreen": true,
       "splashImmersive": true
     },
     "StatusBar": {
       "style": "Dark",
-      "backgroundColor": "#1a1a1a",
+      "backgroundColor": "#141618",
       "overlaysWebView": false
     },
     "Haptics": {

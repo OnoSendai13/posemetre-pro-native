@@ -55,7 +55,7 @@
         // Mettre à jour la couleur de la barre de statut (mobile)
         const metaThemeColor = document.querySelector('meta[name="theme-color"]');
         if (metaThemeColor) {
-            metaThemeColor.setAttribute('content', theme === 'dark' ? '#1a1a1a' : '#81c784');
+            metaThemeColor.setAttribute('content', theme === 'dark' ? '#141618' : '#C17B2A');
         }
         
         // Sauvegarder le choix
