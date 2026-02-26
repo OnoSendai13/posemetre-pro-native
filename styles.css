@@ -27,62 +27,62 @@
     box-sizing: border-box;
 }
 
-/* --- Dark theme (defaut) --- */
+/* --- Dark theme (defaut) — Amber Studio --- */
 :root {
-    --primary-color: #ff6b35;
-    --secondary-color: #004e89;
-    --bg-dark: #1a1a1a;
-    --bg-card: #2a2a2a;
-    --text-light: #ffffff;
-    --text-muted: #b0b0b0;
-    --border-color: #404040;
-    --success-color: #4caf50;
-    --warning-color: #ff9800;
-    --input-bg: #333333;
-    --header-bg-start: #004e89;
-    --header-bg-end: #003d6b;
-    --body-bg-start: #1a1a1a;
-    --body-bg-end: #2d2d2d;
-    --comp-section-bg: rgba(255,107,53,0.08);
-    --comp-section-border: rgba(255,107,53,0.2);
-    --results-bg-start: rgba(0,78,137,0.2);
-    --results-bg-end: rgba(0,61,107,0.2);
-    --tab-active-bg: rgba(255,107,53,0.1);
-    --input-focus-bg: #3a3a3a;
-    --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-    --comp-btn-hover-bg: #404040;
+    --primary-color: #E8A849;
+    --secondary-color: #2B4C6F;
+    --bg-dark: #141618;
+    --bg-card: #1E2226;
+    --text-light: #E8E4DF;
+    --text-muted: #8A8680;
+    --border-color: #2E3238;
+    --success-color: #5DB075;
+    --warning-color: #E8A849;
+    --input-bg: #262A2F;
+    --header-bg-start: #1C2A3D;
+    --header-bg-end: #141E2C;
+    --body-bg-start: #141618;
+    --body-bg-end: #1A1E22;
+    --comp-section-bg: rgba(232,168,73,0.08);
+    --comp-section-border: rgba(232,168,73,0.2);
+    --results-bg-start: rgba(43,76,111,0.2);
+    --results-bg-end: rgba(43,76,111,0.12);
+    --tab-active-bg: rgba(232,168,73,0.1);
+    --input-focus-bg: #2A2F35;
+    --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23E8E4DF' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    --comp-btn-hover-bg: #333840;
     --modal-overlay-bg: rgba(0, 0, 0, 0.8);
-    --shadow-main: rgba(0,0,0,0.4);
-    --shadow-header: rgba(0,0,0,0.3);
+    --shadow-main: rgba(0,0,0,0.5);
+    --shadow-header: rgba(0,0,0,0.4);
 }
 
-/* --- Light theme --- */
+/* --- Light theme — Amber Studio --- */
 :root[data-theme="light"] {
-    --primary-color: #81c784;
-    --secondary-color: #4caf50;
-    --bg-dark: #f0f4f8;
-    --bg-card: #ffffff;
-    --text-light: #2c3e50;
-    --text-muted: #7f8c8d;
-    --border-color: #d0dbe3;
-    --success-color: #66bb6a;
-    --warning-color: #ffa726;
-    --input-bg: #ffffff;
-    --header-bg-start: #81c784;
-    --header-bg-end: #66bb6a;
-    --body-bg-start: #f0f4f8;
-    --body-bg-end: #e8eef3;
-    --comp-section-bg: rgba(129, 199, 132, 0.08);
-    --comp-section-border: rgba(129, 199, 132, 0.3);
-    --results-bg-start: rgba(129, 199, 132, 0.1);
-    --results-bg-end: rgba(100, 181, 246, 0.1);
-    --tab-active-bg: rgba(129, 199, 132, 0.15);
-    --input-focus-bg: #ffffff;
-    --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232c3e50' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-    --comp-btn-hover-bg: rgba(129, 199, 132, 0.1);
+    --primary-color: #C17B2A;
+    --secondary-color: #3A6B9F;
+    --bg-dark: #F5F2ED;
+    --bg-card: #FFFFFF;
+    --text-light: #1A1D21;
+    --text-muted: #7D7670;
+    --border-color: #D9D2C9;
+    --success-color: #4A9960;
+    --warning-color: #C17B2A;
+    --input-bg: #FFFFFF;
+    --header-bg-start: #C17B2A;
+    --header-bg-end: #A86820;
+    --body-bg-start: #F5F2ED;
+    --body-bg-end: #ECE7E0;
+    --comp-section-bg: rgba(193,123,42,0.06);
+    --comp-section-border: rgba(193,123,42,0.2);
+    --results-bg-start: rgba(58,107,159,0.08);
+    --results-bg-end: rgba(58,107,159,0.04);
+    --tab-active-bg: rgba(193,123,42,0.1);
+    --input-focus-bg: #FFFFFF;
+    --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231A1D21' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    --comp-btn-hover-bg: rgba(193,123,42,0.08);
     --modal-overlay-bg: rgba(0, 0, 0, 0.5);
-    --shadow-main: rgba(129, 199, 132, 0.15);
-    --shadow-header: rgba(129, 199, 132, 0.25);
+    --shadow-main: rgba(193,123,42,0.12);
+    --shadow-header: rgba(193,123,42,0.2);
 }
 
 /* =====================================================
@@ -1312,23 +1312,23 @@ footer {
    ===================================================== */
 
 .meter-display {
-    background: rgba(42, 42, 42, 0.75);
+    background: rgba(30, 34, 38, 0.75);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(232, 228, 223, 0.06);
     box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.35),
-        0 2px 6px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        0 8px 32px rgba(0, 0, 0, 0.45),
+        0 2px 6px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(232, 228, 223, 0.04);
 }
 
 [data-theme="light"] .meter-display {
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.78);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(217, 210, 201, 0.4);
     box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.08),
+        0 8px 32px rgba(193, 123, 42, 0.06),
         0 2px 6px rgba(0, 0, 0, 0.04),
         inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
@@ -1341,11 +1341,11 @@ header {
 .tab-nav {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    background: rgba(42, 42, 42, 0.8);
+    background: rgba(30, 34, 38, 0.85);
 }
 
 [data-theme="light"] .tab-nav {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(245, 242, 237, 0.9);
 }
 
 /* =====================================================
@@ -1468,25 +1468,25 @@ header {
     }
 }
 
-/* Input focus glow pulse */
+/* Input focus glow pulse — Amber Studio */
 .input-field:focus {
-    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
+    box-shadow: 0 0 0 3px rgba(232, 168, 73, 0.2);
     animation: focusPulse 1.5s ease-in-out infinite;
 }
 
 @keyframes focusPulse {
-    0%, 100% { box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.15); }
-    50% { box-shadow: 0 0 0 5px rgba(255, 107, 53, 0.08); }
+    0%, 100% { box-shadow: 0 0 0 3px rgba(232, 168, 73, 0.15); }
+    50% { box-shadow: 0 0 0 5px rgba(232, 168, 73, 0.08); }
 }
 
 [data-theme="light"] .input-field:focus {
-    box-shadow: 0 0 0 3px rgba(129, 199, 132, 0.2);
+    box-shadow: 0 0 0 3px rgba(193, 123, 42, 0.2);
     animation: focusPulseLight 1.5s ease-in-out infinite;
 }
 
 @keyframes focusPulseLight {
-    0%, 100% { box-shadow: 0 0 0 3px rgba(129, 199, 132, 0.2); }
-    50% { box-shadow: 0 0 0 5px rgba(129, 199, 132, 0.1); }
+    0%, 100% { box-shadow: 0 0 0 3px rgba(193, 123, 42, 0.2); }
+    50% { box-shadow: 0 0 0 5px rgba(193, 123, 42, 0.1); }
 }
 
 /* Result items pop-in animation */
