@@ -352,7 +352,7 @@ const helpContent = {
                 <p><span class="legend-box gray"></span> Sur une ligne : 0,33 IL (⅓ de diaph) entre chaque case</p>
                 <p>↕ En colonne : 1,33 IL (1 diaph + ⅓) entre chaque case</p>
             </div>
-            <p class="aperture-grid-credit">Tableau inspiré de @nathsakuraofficial — <a href="https://www.nath-sakura.com" target="_blank" rel="noopener">nath-sakura.com</a></p>
+            <p class="aperture-grid-credit">Tableau inspiré de @nathsakuraofficial — <a href="https://nath-sakura.net/" target="_blank" rel="noopener">nath-sakura.net</a></p>
         `,
         posemetre: `
             <h3>☀️ Mode Continu (lumière ambiante)</h3>
@@ -538,7 +538,7 @@ const helpContent = {
                 <p><span class="legend-box gray"></span> On a row: 0.33 EV (⅓ stop) between each cell</p>
                 <p>↕ In a column: 1.33 EV (1 stop + ⅓) between each cell</p>
             </div>
-            <p class="aperture-grid-credit">Chart inspired by @nathsakuraofficial — <a href="https://www.nath-sakura.com" target="_blank" rel="noopener">nath-sakura.com</a></p>
+            <p class="aperture-grid-credit">Chart inspired by @nathsakuraofficial — <a href="https://nath-sakura.net/" target="_blank" rel="noopener">nath-sakura.net</a></p>
         `,
         posemetre: `
             <h3>☀️ Ambient Mode (continuous light)</h3>
