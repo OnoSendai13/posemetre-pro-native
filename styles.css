@@ -121,8 +121,10 @@ header {
     padding: 16px 20px;
     padding-top: calc(16px + env(safe-area-inset-top));
     box-shadow: 0 4px 12px var(--shadow-header);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
     color: white;
 }
@@ -280,8 +282,11 @@ header h1 {
     grid-template-columns: repeat(4, 1fr);
     background: var(--bg-card);
     border-bottom: 2px solid var(--border-color);
-    position: sticky;
-    top: 88px;
+    position: fixed;
+    /* Position below the header */
+    top: calc(88px + env(safe-area-inset-top));
+    left: 0;
+    right: 0;
     z-index: 99;
 }
 
@@ -326,6 +331,9 @@ header h1 {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
+    /* Add top padding to account for fixed header (~88px) + fixed tabs (~56px) + safe-area */
+    padding-top: calc(88px + 56px + env(safe-area-inset-top) + 20px);
+    margin-top: 0;
 }
 
 .tab-content {
@@ -1564,7 +1572,7 @@ header h1 {
 }
 
 header.header-compact ~ .tab-nav {
-    top: 56px;
+    top: calc(56px + env(safe-area-inset-top));
 }
 
 @media (max-width: 480px) {
@@ -1573,6 +1581,6 @@ header.header-compact ~ .tab-nav {
     }
 
     header.header-compact ~ .tab-nav {
-        top: 48px;
+        top: calc(48px + env(safe-area-inset-top));
     }
 }
