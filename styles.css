@@ -630,6 +630,7 @@ input[type="number"].input-field {
 [data-theme="light"] .comp-btn.active {
     background: var(--secondary-color);
     border-color: var(--secondary-color);
+    color: white;
     box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
 }
 
