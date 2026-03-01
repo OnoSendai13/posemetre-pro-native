@@ -12,6 +12,11 @@ const translations = {
         helpBtn: '?',
         themeBtn: 'Changer de thème',
         
+        // Power mode switch
+        powerModeLabel: 'Puissance:',
+        powerModeIL: 'IL',
+        powerModeFractions: 'Fractions',
+        
         // Navigation
         navPosemetre: '☀️ Continu',
         navFlash: '⚡ Flash',
@@ -140,6 +145,11 @@ const translations = {
         appTitle: '📷 Light Meter Pro Assistant',
         helpBtn: '?',
         themeBtn: 'Change theme',
+        
+        // Power mode switch
+        powerModeLabel: 'Power:',
+        powerModeIL: 'EV',
+        powerModeFractions: 'Fractions',
         
         // Navigation
         navPosemetre: '☀️ Ambient',
