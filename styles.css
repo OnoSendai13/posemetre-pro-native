@@ -283,11 +283,17 @@ header h1 {
     background: var(--bg-card);
     border-bottom: 2px solid var(--border-color);
     position: fixed;
-    /* Position below the header */
+    /* Position below the header - base height without power mode switch */
     top: calc(88px + env(safe-area-inset-top));
     left: 0;
     right: 0;
     z-index: 99;
+    transition: top 0.3s ease;
+}
+
+/* When power mode switch is visible, header is taller (~40px more) */
+.tab-nav.header-extended {
+    top: calc(128px + env(safe-area-inset-top));
 }
 
 .tab-btn {
@@ -334,6 +340,12 @@ header h1 {
     /* Add top padding to account for fixed header (~88px) + fixed tabs (~56px) + safe-area */
     padding-top: calc(88px + 56px + env(safe-area-inset-top) + 20px);
     margin-top: 0;
+    transition: padding-top 0.3s ease;
+}
+
+/* When power mode switch is visible, content needs more top padding */
+.content.header-extended {
+    padding-top: calc(128px + 56px + env(safe-area-inset-top) + 20px);
 }
 
 .tab-content {

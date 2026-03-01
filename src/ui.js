@@ -87,8 +87,20 @@ export function switchTab(tabName) {
     if (tabContent) tabContent.classList.add('active');
 
     const powerModeSwitch = dom('powerModeSwitch');
+    const tabNav = document.querySelector('.tab-nav');
+    const content = document.querySelector('.content');
+    const isExtendedHeader = (tabName === 'flashmetre' || tabName === 'ratios');
+    
     if (powerModeSwitch) {
-        powerModeSwitch.style.display = (tabName === 'flashmetre' || tabName === 'ratios') ? 'flex' : 'none';
+        powerModeSwitch.style.display = isExtendedHeader ? 'flex' : 'none';
+    }
+    
+    // Adjust tab-nav and content positioning when power mode switch is visible
+    if (tabNav) {
+        tabNav.classList.toggle('header-extended', isExtendedHeader);
+    }
+    if (content) {
+        content.classList.toggle('header-extended', isExtendedHeader);
     }
 }
 
