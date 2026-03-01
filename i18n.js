@@ -783,7 +783,8 @@ function updateEstimationZones() {
         { value: '-4', key: 'zoneBlackBlocked' }
     ];
     
-    const currentValue = select.value;
+    // Preserve current value or default to '1' (Light skin)
+    const currentValue = select.value || '1';
     select.innerHTML = zones.map(z => 
         `<option value="${z.value}"${z.value === currentValue ? ' selected' : ''}>${t(z.key)}</option>`
     ).join('');
