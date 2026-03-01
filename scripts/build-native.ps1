@@ -26,10 +26,12 @@ Set-Location $ProjectRoot
 # ==============================================================================
 Write-Host "Step 1: Preparing web assets..." -ForegroundColor Yellow
 
-# Create www directory if it doesn't exist
-if (-not (Test-Path "www")) {
-    New-Item -ItemType Directory -Path "www" | Out-Null
+# Clean and recreate www directory to ensure fresh copy
+if (Test-Path "www") {
+    Write-Host "  -> Cleaning existing www directory..."
+    Remove-Item -Path "www" -Recurse -Force
 }
+New-Item -ItemType Directory -Path "www" | Out-Null
 
 # Copy main files
 Write-Host "  -> Copying main application files..."
