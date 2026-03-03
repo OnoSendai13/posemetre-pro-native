@@ -11,10 +11,11 @@ Ce guide explique comment compiler l'application Posemètre Pro pour iOS et Andr
 - **Compte Apple Developer** (pour la distribution)
 
 ### Pour Android
-- **Android Studio** (Arctic Fox ou plus récent)
-- **Java JDK 17+**
-- **Android SDK** (API level 22 minimum, 34 recommandé)
-- **Gradle** (inclus avec Android Studio)
+- **Android Studio** (Hedgehog ou plus récent)
+- **Java JDK 21** (LTS recommandé)
+- **Android SDK** (API level 24 minimum, 35 recommandé)
+- **Gradle 8.10.2+** (configuré automatiquement)
+- **AGP 8.7.3+** (Android Gradle Plugin)
 
 ### Général
 - **Node.js 16+**
@@ -104,11 +105,11 @@ npm run cap:open:android
 2. **Vérifier les paramètres** (`android/app/build.gradle`)
    ```gradle
    android {
-       compileSdkVersion 34
+       compileSdkVersion 35
        defaultConfig {
            applicationId "com.onosendai.posemetrepro"
-           minSdkVersion 22
-           targetSdkVersion 34
+           minSdkVersion 24
+           targetSdkVersion 35
            versionCode 1
            versionName "1.3.0"
        }
@@ -222,6 +223,20 @@ Le splash screen est configuré dans `capacitor.config.json`:
 | `npm run cap:run:android` | Lancer sur émulateur Android |
 
 ## 🐛 Résolution de Problèmes
+
+### Windows (PowerShell)
+
+**IMPORTANT: Toujours nettoyer le dossier www avant un build**
+```powershell
+Remove-Item -Path "www" -Recurse -Force -ErrorAction SilentlyContinue
+npm run build:android
+```
+
+**Erreur Java/Gradle incompatible**
+```powershell
+# Exécuter le script de fix
+.\\scripts\\fix-gradle-java21.ps1
+```
 
 ### iOS
 

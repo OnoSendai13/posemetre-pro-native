@@ -2,9 +2,9 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.3-blue.svg)
+![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)
 ![iOS](https://img.shields.io/badge/iOS-13%2B-black.svg)
-![Android](https://img.shields.io/badge/Android-API%2022%2B-green.svg)
+![Android](https://img.shields.io/badge/Android-API%2024%2B-green.svg)
 ![Capacitor](https://img.shields.io/badge/Capacitor-5.x-purple.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![i18n](https://img.shields.io/badge/languages-FR%20%7C%20EN-orange.svg)
@@ -68,7 +68,7 @@ npx cap open android  # Android Studio
 
 ---
 
-## 🌟 What's New in v1.2
+## 🌟 What's New in v1.3
 
 ### 🌍 Multilingual Support (FR/EN)
 - **Complete i18n system** with automatic browser language detection
@@ -290,7 +290,15 @@ lightmeter-app-pwa/
 
 ## 📋 Changelog Highlights
 
-### v1.2 (Current)
+### v1.3 (Current)
+- ✅ Native Android app ready for Google Play Store
+- ✅ Fixed header/tabs positioning for mobile devices
+- ✅ Safe area support for modern Android devices
+- ✅ Complete i18n fixes for all dynamic content
+- ✅ SDK API 35 (Android 15) compatibility
+- ✅ AGP 8.7.3 & Gradle 8.10.2 support
+
+### v1.2
 - ✅ Multilingual support (FR/EN)
 - ✅ HSS mode with power loss calculation
 - ✅ Integrated help modal
