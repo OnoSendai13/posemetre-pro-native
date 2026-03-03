@@ -705,19 +705,23 @@ function setLanguage(lang) {
     if (translations[lang]) {
         currentLang = lang;
         localStorage.setItem(LANG_KEY, lang);
+        
+        // Mettre à jour les zones AVANT applyTranslations pour éviter le décalage
+        updateEstimationZones();
+        updateReflectanceGrid();
+        
         applyTranslations();
         updateLanguageButton();
+        
         // Recalculer les résultats pour mettre à jour les textes
         if (typeof window.calculatePosemetre === 'function') window.calculatePosemetre();
         if (typeof window.calculateFlashmetre === 'function') window.calculateFlashmetre();
         if (typeof window.calculateRatios === 'function') window.calculateRatios();
         if (typeof window.calculateEstimation === 'function') window.calculateEstimation();
+        
         // Mettre à jour l'aide
         updateHelpContent();
-        // Mettre à jour les zones de l'estimation
-        updateEstimationZones();
-        // Mettre à jour la grille de réflectance
-        updateReflectanceGrid();
+        
         console.log('Language changed to:', lang);
     }
 }
@@ -766,7 +770,12 @@ function updateHelpContent() {
  */
 function updateEstimationZones() {
     const select = document.getElementById('estim-zone');
-    if (!select) return;
+    if (!select) {
+        console.log('updateEstimationZones: select not found');
+        return;
+    }
+    
+    console.log('updateEstimationZones called, currentLang:', currentLang);
     
     const zones = [
         { value: '4', key: 'zoneWhiteBurnt' },
@@ -785,9 +794,12 @@ function updateEstimationZones() {
     
     // Preserve current value or default to '1' (Light skin)
     const currentValue = select.value || '1';
-    select.innerHTML = zones.map(z => 
+    const newHTML = zones.map(z => 
         `<option value="${z.value}"${z.value === currentValue ? ' selected' : ''}>${t(z.key)}</option>`
     ).join('');
+    
+    console.log('updateEstimationZones: first option will be:', t('zoneWhiteBurnt'));
+    select.innerHTML = newHTML;
 }
 
 /**
