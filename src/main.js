@@ -171,9 +171,9 @@ function setupEventListeners() {
     }
 
     // Input changes — RATIOS
-    ['ratio-key', 'ratio-iso', 'ratio-vitesse'].forEach(id => {
-        dom(id)?.addEventListener('change', calculateRatios);
-    });
+        ['ratio-key', 'ratio-iso', 'ratio-vitesse', 'ratio-key-power', 'ratio-fill-power', 'ratio-key-gn', 'ratio-fill-gn'].forEach(id => {
+            dom(id)?.addEventListener('change', calculateRatios);
+        });
 
     // Input changes — ESTIMATION
     ['estim-zone', 'estim-mesure', 'estim-iso', 'estim-vitesse'].forEach(id => {

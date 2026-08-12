@@ -412,12 +412,120 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.7.0] - 2026-08-12
+
+### 🎯 Ratios Key/Fill — Puissance Réelle + Nombre Guide + Calcul Affiné
+
+**Status**: ✅ Production-ready  
+**Platform**: ✅ PWA + iOS + Android (API 36)  
+**Version Code**: 6 (Google Play: versionCode 6, versionName 1.7.0)
+
+### ✨ New Features
+
+#### 💡 Ratios Mode — Real Flash Power Input
+- **Key Light Power (W)** — Puissance réelle du flash principal (défaut 600W)
+- **Fill Light Power (W)** — Puissance réelle du flash fill (défaut 100W)
+- **Key Guide Number** — Nombre Guide du flash principal (défaut 100)
+- **Fill Guide Number** — Nombre Guide du flash fill (défaut 200)
+
+#### 🔧 Calcul Affiné Mode Fractions
+- Conversion W → IL via `log2(puissance)` pour calculer le delta réel
+- Fraction requise = `2^(keyIL + ratioIL) / fillPower` → mapping vers fraction standard (1/1 à 1/512)
+- **Distance suggérée** affichée si GN renseignés : `(GN_fill / GN_key)m`
+- Si même puissance Key/Fill → affiche `1/1` (pas de changement nécessaire)
+
+### 🛠️ Technical
+- 4 nouveaux inputs DOM (`ratio-key-power`, `ratio-fill-power`, `ratio-key-gn`, `ratio-fill-gn`)
+- Event listeners `change` → recalcul instantané
+- Cache DOM mis à jour dans `state.js`
+- Suppression variables d'état legacy `_keyFlashPower`, `_fillFlashPower`, `_ngKey`, `_ngFill` (maintenant lu direct du DOM)
+
+### 📝 Files Modified
+- `index.html` — 4 nouveaux champs dans l'onglet Ratios
+- `i18n.js` — 6 nouvelles clés de traduction (FR/EN)
+- `src/ui.js` — `calculateRatios()` lecture DOM + distance affichée
+- `src/main.js` — Event listeners pour les 4 nouveaux champs
+- `src/state.js` — Cache DOM + suppression état legacy
+- `package.json` — Version 1.7.0
+- `README.md` — Badge version + prérequis Android API 36
+- `NATIVE_BUILD.md` — compileSdk/targetSdk 36, minSdk 24
+
+---
+
+## [1.3] - 2026-08-11
+
+### 🏗️ Architecture Modulaire + Modern UI Effects + Code Cleanup
+
+**Status**: ✅ Production-ready  
+**Platform**: ✅ PWA + iOS + Android ready  
+**Languages**: FR + EN (complete i18n)  
+**Themes**: Dark (Amber Studio) + Light (Pastel Mint)
+
+### ✨ New Features
+
+#### 📦 Modular Architecture (src/)
+- **Complete refactor** from monolithic `app.js` to ES modules:
+  - `src/constants.js` — Photographic reference data (ISO, apertures, shutters, flash powers)
+  - `src/calculations.js` — Pure math functions (zero DOM, fully testable)
+  - `src/state.js` — Encapsulated state store with DOM caching
+  - `src/ui.js` — DOM manipulation, calculations orchestration, i18n integration
+  - `src/effects.js` — Modern UI enhancements (IntersectionObserver, gestures, micro-interactions)
+  - `src/main.js` — Entry point, Capacitor setup, PWA, event wiring
+- **Dead code removal**: Deleted 35 KB legacy `app.js` (was not loaded)
+
+#### 🎨 Modern UI Effects (effects.js)
+- **Scroll-triggered animations** via IntersectionObserver with stagger delays
+- **Directional tab transitions** (slide left/right based on navigation direction)
+- **Polished modal** with slide-up sheet on mobile, scale-in on desktop, swipe-to-dismiss
+- **Micro-interactions**: Ripple effect on compensation buttons, result pop-in animation, focus pulse glow
+- **Scroll-linked compact header** (shrinks on scroll down, restores on scroll up)
+- **Glassmorphism depth** with backdrop-filter on cards, header, tabs, modal
+
+#### 🌍 i18n Completeness
+- 100% coverage: all dynamic content, help modal (5 sections), zone dropdown, reflectance grid
+- Unit adaptation: IL (FR) / EV (EN) via `evUnit` translation key
+- Language toggle shows current language (FR/EN) instead of static "EN"
+
+#### ⚡ HSS & Flash Improvements
+- HSS power loss formula refined: ~2 EV base + ~1 EV per stop above sync
+- Flash current power selector extended to 1/512 (10 fractions total)
+- Smart normal-sync fallback suggestions when HSS settings are extreme
+
+#### 🔧 Technical Fixes
+- Function return consistency: `calculateShutterSpeed()` now returns numeric value (matches `calculateAperture()`)
+- ISO validation with clamping to standard range (25–102400)
+- Safe DOM access: optional chaining for `selectedOptions[0]`
+- Service Worker path configurable via `window.APP_CONFIG.basePath`
+- Removed duplicate HTML blocks in Ratios mode (key-power/fill-power inputs)
+
+### 📝 Files Added
+- `src/constants.js`, `src/calculations.js`, `src/state.js`, `src/ui.js`, `src/effects.js`, `src/main.js`
+
+### 🛠️ Files Modified
+- `index.html` — Removed legacy script loads, added `type="module" src="src/main.js"`, fixed Ratios duplication, language toggle
+- `package.json` — Version 1.3.0, modular entry point
+- `styles.css` — All effect animations, glassmorphism, compact header, modal sheet
+- `i18n.js` — Added `evUnit` key, current-language display for toggle
+
+### ✅ Tests
+- ✅ Modular architecture loads correctly (ES modules)
+- ✅ All 4 modes work in both languages (FR/EN)
+- ✅ Both themes display correctly with all effects
+- ✅ HSS calculations accurate across sync speeds
+- ✅ Help modal: swipe dismiss (mobile), ESC/close/overlay (desktop)
+- ✅ Scroll animations trigger on tab switch
+- ✅ Capacitor native build: iOS + Android
+- ✅ PWA offline functional
+
+---
+
 ## 🚀 Future Versions
 
-### v1.3 (Planned)
+### v1.4 (Planned)
 - [ ] History of last 10 measurements
 - [ ] Saved favorites / Presets
 - [ ] Export to CSV/PDF
+- [ ] Unit tests (Vitest) for calculations.js
 
 ### v2.0 (Future)
 - [ ] Additional languages (ES, DE, IT)

@@ -13,7 +13,7 @@ Ce guide explique comment compiler l'application Posemètre Pro pour iOS et Andr
 ### Pour Android
 - **Android Studio** (Hedgehog ou plus récent)
 - **Java JDK 21** (LTS recommandé)
-- **Android SDK** (API level 24 minimum, 35 recommandé)
+- **Android SDK** (API level 24 minimum, 36 requis pour Google Play)
 - **Gradle 8.10.2+** (configuré automatiquement)
 - **AGP 8.7.3+** (Android Gradle Plugin)
 
@@ -25,8 +25,8 @@ Ce guide explique comment compiler l'application Posemètre Pro pour iOS et Andr
 
 ```bash
 # 1. Cloner le dépôt
-git clone https://github.com/OnoSendai13/posemetre-pro.git
-cd posemetre-pro
+git clone https://github.com/OnoSendai13/posemetre-pro-native.git
+cd posemetre-pro-native
 
 # 2. Installer les dépendances
 npm install
@@ -105,13 +105,13 @@ npm run cap:open:android
 2. **Vérifier les paramètres** (`android/app/build.gradle`)
    ```gradle
    android {
-       compileSdkVersion 35
+       compileSdkVersion 36
        defaultConfig {
            applicationId "com.onosendai.posemetrepro"
            minSdkVersion 24
-           targetSdkVersion 35
-           versionCode 1
-           versionName "1.3.0"
+           targetSdkVersion 36
+           versionCode 6
+           versionName "1.7.0"
        }
    }
    ```
@@ -235,7 +235,7 @@ npm run build:android
 **Erreur Java/Gradle incompatible**
 ```powershell
 # Exécuter le script de fix
-.\\scripts\\fix-gradle-java21.ps1
+.\scripts\fix-gradle-java21.ps1
 ```
 
 ### iOS
@@ -286,29 +286,33 @@ posemetre-pro/
 │       ├── App/
 │       │   ├── public/     # Web assets (copie)
 │       │   └── Assets.xcassets/
-│       └── Podfile
-├── android/                # Projet Android Studio
-│   └── app/
-│       └── src/main/
-│           ├── assets/public/  # Web assets (copie)
-│           └── res/           # Ressources Android
-├── capacitor.config.json   # Config Capacitor
-└── package.json
 ```
-
-## 📝 Notes Importantes
-
-1. **Toujours exécuter `npm run build:native`** avant d'ouvrir les IDEs
-2. **Ne pas modifier** les fichiers dans `ios/` ou `android/` directement pour le web
-3. **Sauvegarder** vos keystores et mots de passe de signature
-4. **Tester** sur de vrais appareils avant la publication
-
-## 🔗 Ressources Utiles
-
-- [Documentation Capacitor](https://capacitorjs.com/docs)
-- [Guide iOS Distribution](https://developer.apple.com/documentation/xcode/distributing-your-app-for-beta-testing-and-releases)
-- [Guide Android Publishing](https://developer.android.com/studio/publish)
 
 ---
 
-**Besoin d'aide ?** Ouvrez une issue sur GitHub !
+## ✅ Checklist Pré-Release
+
+### iOS
+- [ ] Bundle ID unique configuré
+- [ ] Team de signature sélectionnée
+- [ ] Icônes toutes tailles présentes
+- [ ] Splash screen configuré
+- [ ] Certificats valides (Distribution)
+- [ ] Provisioning profiles à jour
+- [ ] Archive → Validate App réussi
+- [ ] TestFlight testé
+
+### Android
+- [ ] `applicationId` correct
+- [ ] `versionCode` incrémenté (actuel: 6)
+- [ ] `versionName` mis à jour (actuel: 1.7.0)
+- [ ] `compileSdkVersion` 36
+- [ ] `targetSdkVersion` 36
+- [ ] `minSdkVersion` 24
+- [ ] Clé de signature générée et configurée
+- [ ] `assembleRelease` / `bundleRelease` réussi
+- [ ] AAB uploadé sur Play Console
+
+---
+
+*Dernière mise à jour: Août 2026 — Posemètre Pro v1.7.0*

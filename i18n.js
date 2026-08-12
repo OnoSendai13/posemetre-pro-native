@@ -43,10 +43,14 @@ const translations = {
         resultsFlash: '⚡ Ajuster le flash à',
         
         // Mode Ratios
-        ratiosTitle: 'Ratios Key/Fill Light',
-        labelKeyLight: 'Key Light (mesure):',
-        labelRatioFill: 'Ratio Fill vs Key:',
-        resultsFill: '💡 Fill Light à régler',
+                ratiosTitle: 'Ratios Key/Fill Light',
+                labelKeyLight: 'Key Light (mesure):',
+                labelRatioFill: 'Ratio Fill vs Key:',
+                labelKeyPower: 'Puissance Key Light (W):',
+                labelFillPower: 'Puissance Fill Light (W):',
+                labelKeyGN: 'Nombre Guide Key:',
+                labelFillGN: 'Nombre Guide Fill:',
+                resultsFill: '💡 Fill Light à régler',
         
         // Mode Estimation
         estimationTitle: 'Sans Cellule (Estimation incidente)',
@@ -177,10 +181,14 @@ const translations = {
         resultsFlash: '⚡ Adjust flash to',
         
         // Mode Ratios
-        ratiosTitle: 'Key/Fill Light Ratios',
-        labelKeyLight: 'Key Light (reading):',
-        labelRatioFill: 'Fill vs Key ratio:',
-        resultsFill: '💡 Set Fill Light to',
+                ratiosTitle: 'Key/Fill Light Ratios',
+                labelKeyLight: 'Key Light (reading):',
+                labelRatioFill: 'Fill vs Key ratio:',
+                labelKeyPower: 'Key Light Power (W):',
+                labelFillPower: 'Fill Light Power (W):',
+                labelKeyGN: 'Key Guide Number:',
+                labelFillGN: 'Fill Guide Number:',
+                resultsFill: '💡 Set Fill Light to',
         
         // Mode Estimation
         estimationTitle: 'No Meter (Incident Estimation)',

@@ -1,6 +1,6 @@
 {
   "name": "posemetre-pro-native",
-  "version": "1.3.0",
+  "version": "1.7.0",
   "description": "Posemetre Pro Native - Application iOS & Android pour photographes (Capacitor)",
   "main": "index.html",
   "scripts": {

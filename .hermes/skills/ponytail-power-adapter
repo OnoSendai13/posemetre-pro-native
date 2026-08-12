@@ -1,0 +1,92 @@
+{
+  "name": "ponytail-power-adapter",
+  "description": "Skill for flash power‑aware lighting ratio calculations using Number Guide and actual flash power",
+  "category": "software-quality-workflows",
+  "skills": [
+    {
+      "name": "calculate_ratios_with_power",
+      "description": "Calcule les ratios Key/Fill en tenant compte de la puissance réelle des flashs, Number Guide et mode IL/Fractions",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "keyFstop": {
+            "type": "number",
+            "description": "Ouverture du Key Light (ex: 8)"
+          },
+          "ratioIL": {
+            "type": "number",
+            "description": "Ratio d'éclairage en IL (ex: -2.5)"
+          },
+          "iso": {
+            "type": "number",
+            "description": "ISO de la mesure"
+          },
+          "shutter": {
+            "type": "number",
+            "description": "Vitesse d'obturation (ex: 1/125 = 0.008)"
+          },
+          "keyPower": {
+            "type": "number",
+            "description": "Puissance du Key Light (Watt)"
+          },
+          "fillPower": {
+            "type": "number",
+            "description": "Puissance du Fill Light (Watt)"
+          },
+          "ngKey": {
+            "type": "number",
+            "description": "Nombre Guide du Key Light (ex: 100)"
+          },
+          "ngFill": {
+            "type": "number",
+            "description": "Nombre Guide du Fill Light (ex: 200)"
+          },
+          "powerMode": {
+            "type": "string",
+            "enum": ["IL", "FRACTIONS"],
+            "description": "Mode de calcul des puissances"
+          }
+        },
+        "required": ["keyFstop", "ratioIL", "iso", "shutter", "keyPower", "fillPower", "ngKey", "ngFill", "powerMode"]
+      },
+      "callback": {
+        "type": "python",
+        "code": """
+import math
+
+def calculate_ratios_with_power(keyFstop, ratioIL, iso, shutter, keyPower, fillPower, ngKey, ngFill, powerMode):
+    from hermes_tools import read_file
+    
+    # Calcul IL à partir de la puissance
+    keyIL = math.log2(keyPower)
+    fillIL = math.log2(fillPower)
+    targetFillIL = keyIL + ratioIL
+    requiredFillPower = math.pow(2, targetFillIL)
+    fractionValue = requiredFillPower / fillPower
+    
+    # Arrondi à la puissance de deux la plus proche pour les fractions
+    fractions = [1, 0.5, 0.25, 0.125, 0.0625, 0.03125, 0.015625, 0.0078125, 0.00390625, 0.001953125]
+    fraction = min(fractions, key=lambda f: abs(f - fractionValue))
+    
+    # Nombre Guide à distance
+    distance = (ngFill / ngKey) if ngKey and ngFill else None
+    
+    # Formatage du résultat selon le mode
+    if powerMode.upper() == 'IL':
+        powerDisplay = f"{ratioIL:+.1f} IL"
+        distanceDisplay = f"{distance:.1f}m" if distance else ""
+    else:
+        powerDisplay = f"1/{int(1/fraction)}" if fraction < 1 else "1/1"
+        distanceDisplay = f"{distance:.1f}m" if distance else ""
+    
+    return {
+        "fillFstop": round(keyFstop / math.pow(2, abs(ratioIL)), 1),
+        "powerDisplay": powerDisplay,
+        "distanceDisplay": distanceDisplay,
+        "ratio": f"{ratioValue}:1"
+    }
+"""
+      }
+    }
+  ]
+}

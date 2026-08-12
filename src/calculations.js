@@ -1,5 +1,6 @@
 // ============================================
 // FONCTIONS MATHEMATIQUES PHOTOGRAPHIQUES
+// ============================================
 // Fonctions pures - aucun acces DOM
 // ============================================
 
@@ -55,7 +56,7 @@ export function apertureToIL(aperture1, aperture2) {
 // ============================================
 
 /**
- * Trouve la vitesse standard la plus proche (comparaison logarithmique)
+ * Trouve la vitesse standard la plus proche (comparaison logarithimique)
  * @param {number} value
  * @returns {import('./constants.js').ShutterSpeed}
  */

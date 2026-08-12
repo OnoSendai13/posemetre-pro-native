@@ -76,7 +76,7 @@ export function initDomCache() {
         'flash-comp-value', 'flash-results',
         'hss-enabled', 'hss-options', 'hss-sync-max', 'hss-warning', 'hss-warning-text',
         // Ratios
-        'ratio-key', 'ratio-iso', 'ratio-vitesse', 'ratio-comp-value', 'ratio-results',
+                'ratio-key', 'ratio-iso', 'ratio-vitesse', 'ratio-key-power', 'ratio-fill-power', 'ratio-key-gn', 'ratio-fill-gn', 'ratio-comp-value', 'ratio-results',
         // Estimation
         'estim-zone', 'estim-mesure', 'estim-iso', 'estim-vitesse',
         'estim-comp-value', 'estim-results',

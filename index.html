@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
-    
+
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#141618">
     <meta name="background-color" content="#141618">
     <meta name="msapplication-TileColor" content="#2B4C6F">
     <meta name="msapplication-TileImage" content="icons/icon-144x144.png">
     <meta name="msapplication-config" content="browserconfig.xml">
-    
+
     <!-- iOS PWA Support -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -19,34 +19,34 @@
     <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-192x192.png">
     <link rel="apple-touch-icon" sizes="167x167" href="icons/icon-192x192.png">
-    
+
     <!-- SEO & Description -->
     <meta name="description" content="Assistant professionnel de posemetre et flashmetre pour photographes. Calcul d'exposition, mode flash HSS, ratios d'eclairage.">
     <meta name="keywords" content="posemetre, flashmetre, photographie, exposition, ISO, ouverture, vitesse, flash, HSS, light meter">
     <meta name="author" content="Laurent Suchet">
     <meta name="robots" content="index, follow">
-    
+
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Assistant Posemetre Pro">
     <meta property="og:description" content="Assistant professionnel de posemetre et flashmetre pour photographes">
     <meta property="og:image" content="icons/icon-512x512.png">
     <meta property="og:locale" content="fr_FR">
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Assistant Posemetre Pro">
     <meta name="twitter:description" content="Assistant professionnel de posemetre et flashmetre pour photographes">
     <meta name="twitter:image" content="icons/icon-512x512.png">
-    
+
     <title>Assistant Posemetre Pro</title>
-    
+
     <!-- Manifest & Icons -->
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="shortcut icon" href="favicon-32x32.png">
-    
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -56,7 +56,7 @@
             <div class="header-content">
                 <h1 data-i18n="appTitle">&#128247; Assistant Posemètre Pro</h1>
                 <div class="header-buttons">
-                    <button id="lang-btn" class="header-btn" title="Switch to English">EN</button>
+                    <button id="lang-btn" class="header-btn" title="Switch language"></button>
                     <button id="help-btn" class="header-btn" title="Aide">?</button>
                     <button id="theme-toggle" class="header-btn" title="Changer de thème"></button>
                 </div>
@@ -84,7 +84,7 @@
             <section id="tab-posemetre" class="tab-content active">
                 <div class="meter-display">
                     <h2 data-i18n="posemetreTitle">Mode Continu (Lumière ambiante)</h2>
-                    
+
                     <div class="input-group">
                         <label data-i18n="labelMesureInitiale">Mesure initiale (Ouverture):</label>
                         <select id="pose-mesure" class="input-field">
@@ -136,7 +136,7 @@
             <section id="tab-flashmetre" class="tab-content">
                 <div class="meter-display">
                     <h2 data-i18n="flashTitle">Mode Flashmètre</h2>
-                    
+
                     <div class="input-row">
                         <div class="input-group">
                             <label data-i18n="labelVitesseSync">Vitesse sync:</label>
@@ -233,60 +233,82 @@
             </section>
 
             <!-- MODE RATIOS KEY/FILL -->
-            <section id="tab-ratios" class="tab-content">
-                <div class="meter-display">
-                    <h2 data-i18n="ratiosTitle">Ratios Key/Fill Light</h2>
-                    
-                    <div class="input-group">
-                        <label data-i18n="labelKeyLight">Key Light (mesure):</label>
-                        <select id="ratio-key" class="input-field">
-                            <!-- Options generees par JS -->
-                        </select>
-                    </div>
+                        <section id="tab-ratios" class="tab-content">
+                            <div class="meter-display">
+                                <h2 data-i18n="ratiosTitle">Ratios Key/Fill Light</h2>
 
-                    <div class="compensation-section">
-                        <label data-i18n="labelRatioFill">Ratio Fill vs Key:</label>
-                        <div class="compensation-controls">
-                            <button class="comp-btn ratio-comp" data-value="-3">-3 IL</button>
-                            <button class="comp-btn ratio-comp" data-value="-2.5">-2.5 IL</button>
-                            <button class="comp-btn ratio-comp active" data-value="-2">-2 IL</button>
-                            <button class="comp-btn ratio-comp" data-value="-1.5">-1.5 IL</button>
-                            <button class="comp-btn ratio-comp" data-value="-1">-1 IL</button>
-                            <button class="comp-btn ratio-comp" data-value="-0.5">-0.5 IL</button>
-                        </div>
-                        <div class="compensation-display">
-                            <span id="ratio-comp-value">-2 IL</span>
-                        </div>
-                    </div>
+                                <div class="input-group">
+                                    <label data-i18n="labelKeyLight">Key Light (mesure):</label>
+                                    <select id="ratio-key" class="input-field">
+                                        <!-- Options generees par JS -->
+                                    </select>
+                                </div>
 
-                    <div class="input-row">
-                        <div class="input-group">
-                            <label data-i18n="labelISO">ISO:</label>
-                            <input type="number" id="ratio-iso" class="input-field" value="100" min="50" max="102400" step="1">
-                        </div>
-                        <div class="input-group">
-                            <label data-i18n="labelVitesse">Vitesse:</label>
-                            <select id="ratio-vitesse" class="input-field">
-                                <!-- Options generees par JS -->
-                            </select>
-                        </div>
-                    </div>
+                                <div class="compensation-section">
+                                    <label data-i18n="labelRatioFill">Ratio Fill vs Key:</label>
+                                    <div class="compensation-controls">
+                                        <button class="comp-btn ratio-comp" data-value="-3">-3 IL</button>
+                                        <button class="comp-btn ratio-comp" data-value="-2.5">-2.5 IL</button>
+                                        <button class="comp-btn ratio-comp active" data-value="-2">-2 IL</button>
+                                        <button class="comp-btn ratio-comp" data-value="-1.5">-1.5 IL</button>
+                                        <button class="comp-btn ratio-comp" data-value="-1">-1 IL</button>
+                                        <button class="comp-btn ratio-comp" data-value="-0.5">-0.5 IL</button>
+                                    </div>
+                                    <div class="compensation-display">
+                                        <span id="ratio-comp-value">-2 IL</span>
+                                    </div>
+                                </div>
 
-                    <div class="results-box">
-                        <h3 data-i18n="resultsFill">&#128161; Fill Light à régler</h3>
-                        <div id="ratio-results" class="results-content">
-                            <!-- Resultats generes par JS -->
-                        </div>
-                    </div>
-                </div>
-            </section>
+                                <div class="input-row">
+                                    <div class="input-group">
+                                        <label data-i18n="labelISO">ISO:</label>
+                                        <input type="number" id="ratio-iso" class="input-field" value="100" min="50" max="102400" step="1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label data-i18n="labelVitesse">Vitesse:</label>
+                                        <select id="ratio-vitesse" class="input-field">
+                                            <!-- Options generees par JS -->
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="input-row">
+                                    <div class="input-group">
+                                        <label data-i18n="labelKeyPower">Puissance Key Light (W):</label>
+                                        <input type="number" id="ratio-key-power" class="input-field" value="600" min="1" step="1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label data-i18n="labelFillPower">Puissance Fill Light (W):</label>
+                                        <input type="number" id="ratio-fill-power" class="input-field" value="100" min="1" step="1">
+                                    </div>
+                                </div>
+
+                                <div class="input-row">
+                                    <div class="input-group">
+                                        <label data-i18n="labelKeyGN">Nombre Guide Key:</label>
+                                        <input type="number" id="ratio-key-gn" class="input-field" value="100" min="1" step="1">
+                                    </div>
+                                    <div class="input-group">
+                                        <label data-i18n="labelFillGN">Nombre Guide Fill:</label>
+                                        <input type="number" id="ratio-fill-gn" class="input-field" value="200" min="1" step="1">
+                                    </div>
+                                </div>
+
+                                <div class="results-box">
+                                    <h3 data-i18n="resultsFill">&#128161; Fill Light à régler</h3>
+                                    <div id="ratio-results" class="results-content">
+                                        <!-- Resultats generes par JS -->
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
 
             <!-- MODE ESTIMATION -->
             <section id="tab-estimation" class="tab-content">
                 <div class="meter-display">
                     <h2 data-i18n="estimationTitle">Sans Cellule (Estimation incidente)</h2>
                     <p class="info-text" data-i18n="estimationSubtitle">Mesure spot sur une zone de référence</p>
-                    
+
                     <div class="input-group">
                         <label data-i18n="labelZoneMesuree">Zone mesurée (spot):</label>
                         <select id="estim-zone" class="input-field">
@@ -353,7 +375,7 @@
             <button id="installBtn" class="install-btn" style="display:none;">
                 <span data-i18n="footerInstall">&#128241; Installer l'application</span>
             </button>
-            <p class="footer-text" data-i18n="footerText">Assistant Posemètre Pro v1.2 | Développé pour Laurent Suchet IG:@ono_sendai</p>
+            <p class="footer-text" data-i18n="footerText">Assistant Posemètre Pro v1.7.0 | Développé pour Laurent Suchet IG:@ono_sendai</p>
         </footer>
     </div>
 
@@ -365,7 +387,7 @@
                 <h2 data-i18n="helpTitle">&#128214; Aide</h2>
                 <button id="help-close" class="modal-close">&times;</button>
             </div>
-            
+
             <div class="modal-nav">
                 <button class="modal-nav-btn active" data-section="general" data-i18n="helpNavGeneral">Général</button>
                 <button class="modal-nav-btn" data-section="posemetre" data-i18n="helpNavPosemetre">Continu</button>
@@ -373,7 +395,7 @@
                 <button class="modal-nav-btn" data-section="ratios" data-i18n="helpNavRatios">Ratios</button>
                 <button class="modal-nav-btn" data-section="estimation" data-i18n="helpNavEstimation">Sans Cellule</button>
             </div>
-            
+
             <div class="modal-content">
                 <!-- Les contenus sont chargés dynamiquement par i18n.js -->
                 <div class="help-section active" id="help-general"></div>

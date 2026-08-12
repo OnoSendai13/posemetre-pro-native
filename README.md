@@ -2,9 +2,9 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.7.0-blue.svg)
 ![iOS](https://img.shields.io/badge/iOS-13%2B-black.svg)
-![Android](https://img.shields.io/badge/Android-API%2024%2B-green.svg)
+![Android](https://img.shields.io/badge/Android-API%2036-green.svg)
 ![Capacitor](https://img.shields.io/badge/Capacitor-5.x-purple.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![i18n](https://img.shields.io/badge/languages-FR%20%7C%20EN-orange.svg)
@@ -40,9 +40,9 @@ Ce dépôt contient la **version native** de Posemètre Pro, compilée avec **Ca
 - Compte Apple Developer (pour distribution)
 
 **Android :**
-- Android Studio (Arctic Fox+)
-- Java JDK 17+
-- Android SDK (API 22+)
+- Android Studio (Hedgehog+)
+- Java JDK 21+
+- Android SDK (API 24+)
 
 ### Build rapide
 
@@ -64,35 +64,57 @@ npx cap open android  # Android Studio
 
 📖 **Guide complet** : voir [NATIVE_BUILD.md](NATIVE_BUILD.md)
 
-</div>
-
 ---
 
-## 🌟 What's New in v1.3
+## 🌟 What's New in v1.7
 
-### 🌍 Multilingual Support (FR/EN)
-- **Complete i18n system** with automatic browser language detection
-- **FR ↔ EN toggle** in header
-- **Full translation** of all content including dynamic results and help modal
-- **IL/EV units** adapted per language
+### 🎯 Ratios Key/Fill — Puissance Réelle + Nombre Guide
+- **Key Light Power (W)** — Puissance réelle flash principal (défaut 600W)
+- **Fill Light Power (W)** — Puissance réelle flash fill (défaut 100W)
+- **Key Guide Number** — Nombre Guide flash principal (défaut 100)
+- **Fill Guide Number** — Nombre Guide flash fill (défaut 200)
+- **Calcul affiné mode Fractions** : conversion W→IL via log2, fraction requise = `2^(keyIL + ratioIL) / fillPower`
+- **Distance suggérée** : `(GN_fill / GN_key)m` si GN renseignés
+- Si même puissance Key/Fill → affiche `1/1` (pas de changement)
 
-### ⚡ High-Speed Sync (HSS) Mode
-- **Dedicated HSS toggle** in Flash Meter mode
-- **Configurable max sync speed** (1/200, 1/250, 1/320)
-- **Automatic power loss calculation** (approx. -2EV per stop above sync)
-- **Smart recommendations** with normal sync fallback suggestions
+### 🏗️ Modular Architecture (src/) — v1.3
+- **Complete refactor** from monolithic `app.js` to ES modules:
+  - `src/constants.js` — Photographic reference data (ISO, apertures, shutters, flash powers)
+  - `src/calculations.js` — Pure math functions (zero DOM, fully testable)
+  - `src/state.js` — Encapsulated state store with DOM caching
+  - `src/ui.js` — DOM manipulation, calculations orchestration, i18n integration
+  - `src/effects.js` — Modern UI enhancements (IntersectionObserver, gestures, micro-interactions)
+  - `src/main.js` — Entry point, Capacitor setup, PWA, event wiring
+- **Dead code removal**: Deleted 35 KB legacy `app.js`
 
-### 📖 Integrated Help Modal
-- **5 comprehensive sections**: General, Light Meter, Flash, Ratios, Estimation
-- **Manual Mode warning** with RAW/JPEG histogram explanation
-- **Quick navigation** sidebar
-- **Keyboard support** (Escape to close)
+### 🎨 Modern UI Effects — v1.3
+- **Scroll-triggered animations** via IntersectionObserver with stagger delays
+- **Directional tab transitions** (slide left/right based on navigation direction)
+- **Polished modal** with slide-up sheet on mobile, scale-in on desktop, swipe-to-dismiss
+- **Micro-interactions**: Ripple on compensation buttons, result pop-in, focus pulse glow
+- **Scroll-linked compact header** (shrinks on scroll down)
+- **Glassmorphism depth** with backdrop-filter on cards, header, tabs, modal
 
-### 🎨 Dual Theme System
-- **Light Mode** - Pastel Mint (excellent in bright conditions)
-- **Dark Mode** - Dark Orange (professional, low-light friendly)
-- **Auto-detection** via `prefers-color-scheme`
-- **Manual toggle** with localStorage persistence
+### 🌍 i18n Completeness — v1.3
+- 100% coverage: all dynamic content, help modal (5 sections), zone dropdown, reflectance grid
+- Unit adaptation: IL (FR) / EV (EN) via `evUnit` translation key
+- Language toggle shows current language (FR/EN) dynamically
+
+### ⚡ HSS & Flash Improvements — v1.3
+- HSS power loss formula refined: ~2 EV base + ~1 EV per stop above sync
+- Flash current power selector extended to 1/512 (10 fractions total)
+- Smart normal-sync fallback suggestions when HSS settings are extreme
+
+### 🔧 Technical Fixes — v1.3
+- Function return consistency: `calculateShutterSpeed()` returns numeric value
+- ISO validation with clamping to standard range (25–102400)
+- Safe DOM access: optional chaining for `selectedOptions[0]`
+- Service Worker path configurable via `window.APP_CONFIG.basePath`
+- Removed duplicate HTML blocks in Ratios mode
+
+### 🤖 Android API 36 — v1.3
+- `compileSdkVersion = 36`, `targetSdkVersion = 36`, `minSdkVersion = 24`
+- Conforme exigence Google Play (target API 36 requis avant fin 2026)
 
 ---
 
@@ -162,6 +184,10 @@ Calculate fill light based on key light measurement.
 1. Measure key light f-stop
 2. Select desired ratio
 3. Get fill light f-stop automatically
+
+**Nouveau v1.7:**
+- Input real flash power (W) + Guide Number for precise fraction calculation
+- Distance suggestion based on GN ratio
 
 ---
 
@@ -271,7 +297,7 @@ Click the **☀️/🌙** icon to switch between light and dark themes.
 ## 📂 Project Structure
 
 ```
-lightmeter-app-pwa/
+posemetre-pro-native/
 ├── index.html          # Main application
 ├── app.js              # Application logic
 ├── i18n.js             # Translation system
@@ -283,28 +309,42 @@ lightmeter-app-pwa/
 ├── GUIDE.html          # Installation guide
 ├── CHANGELOG.md        # Version history
 ├── README.md           # This file
-└── LICENSE             # MIT License
+├── LICENSE             # MIT License
+├── src/
+│   ├── constants.js    # Photographic reference data
+│   ├── calculations.js # Pure math functions
+│   ├── state.js        # Encapsulated state store
+│   ├── ui.js           # DOM & calculations orchestration
+│   ├── effects.js      # Modern UI enhancements
+│   └── main.js         # Entry point, Capacitor, PWA
+├── android/            # Android Studio project (Capacitor)
+├── ios/                # Xcode project (Capacitor)
+└── scripts/            # Build & utility scripts
 ```
 
 ---
 
 ## 📋 Changelog Highlights
 
-### v1.3 (Current)
-- ✅ Native Android app ready for Google Play Store
-- ✅ Fixed header/tabs positioning for mobile devices
-- ✅ Safe area support for modern Android devices
-- ✅ Complete i18n fixes for all dynamic content
-- ✅ SDK API 35 (Android 15) compatibility
-- ✅ AGP 8.7.3 & Gradle 8.10.2 support
+### v1.7.0 (Current - August 2026)
+- ✅ Ratios Key/Fill — Puissance réelle (W) + Nombre Guide + calcul affiné mode Fractions
+- ✅ Distance suggérée `(GN_fill/GN_key)m` si GN renseignés
+- ✅ Android API 36 (targetSdk 36, compileSdk 36, minSdk 24) — conforme Google Play
 
-### v1.2
+### v1.3 (August 2026)
+- ✅ Modular architecture (ES modules in `src/`)
+- ✅ Modern UI effects (scroll animations, directional tabs, modal gestures, micro-interactions)
+- ✅ i18n completeness (100% dynamic content, help modal, language toggle)
+- ✅ HSS improvements (refined formula, 1/512 fractions, fallback suggestions)
+- ✅ Technical fixes (ISO validation, safe DOM, configurable SW path, dead code removal)
+
+### v1.2 (January 2026)
 - ✅ Multilingual support (FR/EN)
 - ✅ HSS mode with power loss calculation
 - ✅ Integrated help modal
 - ✅ Complete i18n of all dynamic content
 
-### v1.1 
+### v1.1
 - ✅ Dual theme system (Light/Dark)
 - ✅ Capacitor integration for native apps
 - ✅ Auto theme detection
@@ -328,29 +368,16 @@ See [CHANGELOG.md](CHANGELOG.md) for complete history.
 
 ---
 
-## 📜 License
+## 📄 License
 
-MIT License - Copyright (c) 2026 Laurent Suchet IG:@ono_sendai
-
-See [LICENSE](LICENSE) for details.
+MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
-## 🙏 Acknowledgments
+## 🙏 Credits
 
-- **Laurent Suchet IG:@ono_sendai** — Neurologist and professional photographer
-- Designed for real-world field use
-- Based on professional photographic standards
-- Tested with Profoto and other major flash brands
+Developed by **Laurent Suchet** — Neurologist (MS specialist), amateur photographer, AI vibe coding apprentice.
 
----
+IG: [@ono_sendai](https://instagram.com/ono_sendai)
 
-<div align="center">
-
-**Happy shooting!** 📸✨
-
-Made with ❤️ for photographers by Laurent Suchet IG:@ono_sendai
-
-[⬆ Back to top](#-light-meter-pro-assistant)
-
-</div>
+Built with vanilla JS, zero dependencies, for photographers who measure light.

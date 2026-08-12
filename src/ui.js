@@ -320,22 +320,39 @@ export function calculateFlashmetre() {
 }
 
 /**
- * Calcule les ratios KEY/FILL LIGHT
+ * Calcule les ratios KEY/FILL LIGHT avec prise en compte de la puissance réelle
  */
 export function calculateRatios() {
     const keyFstop = parseFloat(dom('ratio-key')?.value);
     const ratioIL = state.compensation.ratios;
     const iso = validateISO(parseInt(dom('ratio-iso')?.value));
     const shutter = parseFloat(dom('ratio-vitesse')?.value);
+    const keyPower = parseFloat(dom('ratio-key-power')?.value) || 600;
+    const fillPower = parseFloat(dom('ratio-fill-power')?.value) || 100;
+    const ngKey = parseFloat(dom('ratio-key-gn')?.value) || 100;
+    const ngFill = parseFloat(dom('ratio-fill-gn')?.value) || 200;
 
     const fillFstop = calculateAperture(keyFstop, ratioIL);
     const evUnit = _t('evUnit');
-
     let powerDisplay;
+    let distanceDisplay = '';
+
     if (state.powerMode === 'IL') {
-        powerDisplay = `${ratioIL >= 0 ? '+' : ''}${ilToPowerIL(ratioIL)} ${evUnit}`;
+        powerDisplay = `${ratioIL >= 0 ? '+' : ''}${ratioIL.toFixed(1)} ${evUnit}`;
     } else {
-        powerDisplay = ilToPowerFraction(ratioIL);
+        const keyIL = Math.log2(keyPower);
+        const fillIL = Math.log2(fillPower);
+        const targetFillIL = keyIL + ratioIL;
+        const requiredFillPower = Math.pow(2, targetFillIL);
+        const fractionValue = requiredFillPower / fillPower;
+        const closestFraction = FLASH_POWERS_FRACTIONS.reduce((prev, curr) =>
+            Math.abs(curr.value - fractionValue) < Math.abs(prev.value - fractionValue) ? curr : prev
+        );
+        powerDisplay = closestFraction.label;
+        if (ngKey > 0 && ngFill > 0) {
+            const distanceRatio = ngFill / ngKey;
+            distanceDisplay = ` (${distanceRatio.toFixed(1)}m)`;
+        }
     }
 
     const lightingRatio = calculateLightingRatio(ratioIL);
@@ -348,7 +365,7 @@ export function calculateRatios() {
         </div>
         <div class="result-item">
             <span class="result-label">${_t('resultRatio')} Fill vs Key</span>
-            <span class="result-value">${powerDisplay}</span>
+            <span class="result-value">${powerDisplay}${distanceDisplay}</span>
             <span class="result-detail">${ratioIL.toFixed(1)} ${evUnit}</span>
         </div>
         <div class="result-item">
